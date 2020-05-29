@@ -13,9 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+// 検証コード
+Route::get('hello', function() {
+    return view('hello.index');
 });
+Route::post('upload', 'PostsController@upload')->name('upload');
+Route::get('/', 'PostsController@index');
+
 
 Auth::routes();
 
