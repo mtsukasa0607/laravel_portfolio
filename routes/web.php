@@ -14,12 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-// 検証コード
-Route::get('hello', function() {
-    return view('hello.index');
+
+Route::get('/', function () {
+    return view('welcome');
 });
-Route::get('/', 'PostsController@index');
-Route::post('upload', 'PostsController@upload')->name('upload');
+// 検証コード
+Route::get('/hello', 'HelloController@index');
+
+Route::get('/posts', 'PostsController@index');
+Route::post('/posts', 'PostsController@upload')->name('upload');
 
 
 Auth::routes();

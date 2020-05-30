@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Hello/Index</title>
+        <title>Posts/Index</title>
     </head>
     <body>
-        <h1>Blade/Hello</h1>
+        <h1>Blade/Posts</h1>
         <p>This is hello page with php-template.</p>
         <p>{{$msg}}</p>
     </body>

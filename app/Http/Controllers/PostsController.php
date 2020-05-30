@@ -38,7 +38,7 @@ class PostsController extends Controller
             'image_title' => $request->comment
         ]);
         
-        return redirect('/');
+        return redirect('posts.index');
     }
 
     //ページ表示
@@ -49,6 +49,6 @@ class PostsController extends Controller
             'posts' => $posts,
         ];
 
-        return view('welcome',$data);
+        return view('posts.index', $data);
     }
 }
