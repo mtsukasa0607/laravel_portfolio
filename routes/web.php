@@ -24,6 +24,8 @@ Route::get('/hello', 'HelloController@index');
 Route::get('/posts', 'PostsController@index');
 Route::post('/posts', 'PostsController@upload')->name('upload');
 
+Route::get('/testCrud/index', 'TestCrudController@index');
+Route::get('/testCrud/show', 'TestCrudController@show');
 
 Auth::routes();
 
