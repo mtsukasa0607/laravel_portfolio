@@ -27,6 +27,9 @@ Route::post('/posts', 'PostsController@upload')->name('upload');
 Route::get('/testCrud/index', 'TestCrudController@index');
 Route::get('/testCrud/show', 'TestCrudController@show');
 
+Route::get('/testCrud/add', 'TestCrudController@add');
+Route::post('/testCrud/add', 'TestCrudController@create');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

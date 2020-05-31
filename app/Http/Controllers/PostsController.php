@@ -38,7 +38,10 @@ class PostsController extends Controller
             'image_title' => $request->comment
         ]);
         
-        return redirect('posts.index');
+        return redirect('posts.index', [
+            'image_file_name' => $path,
+            'image_title' => $request->comment
+        ]);
     }
 
     //ページ表示
@@ -52,3 +55,4 @@ class PostsController extends Controller
         return view('posts.index', $data);
     }
 }
+

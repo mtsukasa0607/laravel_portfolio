@@ -19,5 +19,19 @@ class TestCrudController extends Controller
         $items = DB::select('select * from items');
         return view('testCrud.show', ['items' => $items]);
     }
+
+    public function add(Request $request) {
+        return view('testCrud.add');
+    }
+
+    public function create(Request $request) {
+        $param = [
+            'name' => $request->name,
+            'mail' => $request->mail,
+            'age' => $request->age,
+        ];
+        DB::insert('insert into items (name, mail, age) values (:name, :mail, :age)', $param);
+        return redirect('testCrud/show');
+    }
     
 }
