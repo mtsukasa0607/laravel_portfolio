@@ -1,11 +1,12 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Hello/Index</title>
-    </head>
-    <body>
-        <h1>Blade/Hello</h1>
-        <p>This is hello page with php-template.</p>
-        <p>{{$msg}}</p>
-    </body>
-</html>
+@extends('layouts.helloapp')
+
+@section('title', 'Index')
+    
+@section('content')
+    <p>ここが本文のコンテンツです。</p>
+    <p>必要なだけ記述できます。</p>
+@endsection
+
+@section('footer')
+    copyright 2020
+@endsection
