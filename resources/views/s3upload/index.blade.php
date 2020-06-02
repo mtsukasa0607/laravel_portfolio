@@ -1,11 +1,10 @@
 @extends('layouts.helloapp')
 
-@section('title', 'Index')
+@section('title', 'S3upload/Index')
     
 @section('content')
     <p>{{$msg}}</p>
-
-    <form action="/good/other" method="post" enctype="multipart/form-data">
+    <form action="/s3upload/other" method="post" enctype="multipart/form-data">
         @csrf
         <input type="file" name="file">
         <input type="submit">
@@ -15,7 +14,6 @@
         <p>{{$datum}}</p>
     @endforeach
 
-    
 @endsection
 
 @section('footer')
