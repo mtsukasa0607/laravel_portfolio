@@ -28,10 +28,25 @@ class goodController extends Controller
         return view('good.index', $data);
     }
 
-    public function other(string $msg)
+    public function other(Request $request)
     {
-        Storage::disk('public')->append($this->fname, $msg);
+        // Storage::disk('public')->append($this->fname, $msg);
+        // return redirect()->action('goodController@index');
+
+        // Storage::disk('local')->putFile('files', $request->file('file'));
+        // return redirect()->action('goodController@index');
+
+        // $ext = '.' . $request->file('file')->extension();
+        // Storage::disk('public')->putFileAs('files', $request->file('file'), 'uploaded' . $ext);
+        // return redirect()->action('goodController@index');
+
+        $ext = '.' . $request->file('file')->extension();
+
+        Storage::disk('public')->putFileAs('files', $request->file('file'), 'uploaded' . $ext);
         return redirect()->action('goodController@index');
+
+
+
     }
 
 }

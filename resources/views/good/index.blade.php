@@ -4,6 +4,12 @@
     
 @section('content')
     <p>{{$msg}}</p>
+
+    <form action="/good/other" method="post" enctype="multipart/form-data">
+        @csrf
+        <input type="file" name="file">
+        <input type="submit">
+    </form>
     
 
     @foreach($data as $datum)
