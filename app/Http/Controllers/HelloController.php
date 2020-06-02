@@ -26,8 +26,6 @@ class HelloController extends Controller
 
     public function storage_index()
     {
-
-
         $sample_msg = $this->fname;
         $sample_data = Storage::get($this->fname);
 
@@ -35,22 +33,36 @@ class HelloController extends Controller
             'msg' => $sample_msg,
             'data' => explode(PHP_EOL, $sample_data),
         ];
+
+        var_dump($data);
     
         return view('hello.storage_index', $data);
     }
 
-    public function other($msg)
+    public function other(string $msg)
     {
-        // $data = Storage::get($this->fname) . PHP_EOL . $msg;
-        // $data = Storage::get($this->fname) . $msg;
-        // var_dump($data);
-
-
-        // Storage::put($this->fname, $data);
-
         Storage::append($this->fname, $msg);
-        // return redirect('hello/storage_index');
-        return redirect()->route('hello/storage_index');
-    }
 
+        // $sample_msg = $this->fname;
+        // $sample_data = Storage::get($this->fname);
+
+
+
+        // $data = [
+        //     'msg' => $sample_msg,
+        //     'data' => explode(PHP_EOL, $sample_data),
+        // ];
+
+
+
+
+        // return view('hello.other', $data);
+        // return redirect()->action('HelloController@storage_index', $data);
+        return redirect()->action('HelloController@storage_index');
+
+
+
+
+        // return redirect()->action('HelloController@index');
+    }
 }
