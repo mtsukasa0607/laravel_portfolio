@@ -20,6 +20,8 @@ Route::get('/', function () {
 });
 // 検証コード
 Route::get('/hello', 'HelloController@index');
+Route::get('/hello/storage_index', 'HelloController@storage_index')->name('hello/storage_index');
+Route::get('/hello/storage_index/{msg}', 'HelloController@other');
 
 Route::get('/posts', 'PostsController@index');
 Route::post('/posts', 'PostsController@upload')->name('upload');
