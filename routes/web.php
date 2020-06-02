@@ -23,6 +23,13 @@ Route::get('/hello', 'HelloController@index');
 Route::get('/hello/storage_index', 'HelloController@storage_index');
 Route::get('/hello/other/{msg}', 'HelloController@other');
 
+Route::get('/good', 'goodController@index');
+Route::get('/good/other/{msg}', 'goodController@other');
+
+
+
+
+
 Route::get('/posts', 'PostsController@index');
 Route::post('/posts', 'PostsController@upload')->name('upload');
 
