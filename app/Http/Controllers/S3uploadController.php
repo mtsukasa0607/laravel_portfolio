@@ -15,7 +15,7 @@ class S3uploadController extends Controller
 
     public function __construct()
     {
-        $this->fname = 'hello.txt';
+        $this->fname = 'DIYucQvxCTsfESUS5vJWNgSRIIY4LpoJ0JKRiIMx.jpeg';
     }
 
     public function index()
@@ -37,6 +37,18 @@ class S3uploadController extends Controller
 
         Storage::disk('s3')->putFile('images', $request->file('file'), 'public');
         return redirect()->action('S3uploadController@index');
+    }
+
+    public function show()
+    {
+        $sample_msg = Storage::disk('s3')->url($this->fname);
+        // $sample_data = Storage::disk('s3')->get($this->fname);
+
+        $data = [
+            'msg' => $sample_msg,
+            //'msg' => 'Test S3 Show',
+        ];
+        return view('s3upload.show', $data);
     }
     
 }

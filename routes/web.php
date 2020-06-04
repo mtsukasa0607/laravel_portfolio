@@ -29,6 +29,7 @@ Route::post('/good/other', 'goodController@other');
 
 Route::get('/s3upload', 'S3uploadController@index');
 Route::post('/s3upload/other', 'S3uploadController@other');
+Route::get('/s3upload/show', 'S3uploadController@show');
 
 
 
