@@ -3,21 +3,18 @@
         <title>@yield('title')</title>
     </head>
     <body>
-
-        <h1>@yield('title')</h1>
-            <h2>※メニュー</h2>
-            <ul>
-                <li>test</li>
-                <li>test</li>
-                <li>test</li>
-            </ul>
-        <hr>
+        <div>
+            @yield('header')
+            <h1>@yield('title')</h1>
+            <hr>
+        </div>
         <div>
             @yield('content')
         </div>
         <div>
+            <hr>
             @yield('footer')
+            <p>&copy;Copyright All Rights Reserved.</p>
         </div>
-
     </body>
 </html>

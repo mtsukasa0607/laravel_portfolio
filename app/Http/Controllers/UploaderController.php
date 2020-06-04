@@ -3,50 +3,64 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\UploaderRequest;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class UploaderController extends Controller
 {
-    // 検証用コード
-    public function getIndex()
+    private $fname;
+
+    public function __construct()
     {
-        $uploader = \App\Uploader::orderBy('created_at', 'desc')->paginate(5);
-        return view('uploader.index')->with('uploaders',$uploader);
+        $this->fname = 'DIYucQvxCTsfESUS5vJWNgSRIIY4LpoJ0JKRiIMx.jpeg';
     }
 
-    public function confirm(\App\Http\Requests\UploaderRequest $req)
+    public function index()
     {
-        $username = $req->username;
-        $thum_name = uniqid("THUM_") . "." . $req->file('thum')->guessExtension(); // TMPファイル名
-        $req->file('thum')->move(public_path() . "/img/tmp", $thum_name);
-        $thum = "/img/tmp/".$thum_name;
+        $sample_msg = Storage::disk('public')->url($this->fname);
+        $sample_data = Storage::disk('public')->get($this->fname);
 
-        $hash = array(
-            'thum' => $thum,
-            'username' => $username,
-        );
-
-        return view('uploader.confirm')->with($hash);
+        $data = [
+            'msg' => $sample_msg,
+            'data' => explode(PHP_EOL, $sample_data),
+        ];
+        return view('uploader.index', $data);
+    }
+    
+    public function show()
+    {
+        $records = DB::select('select * from images');
+        $data = [
+            'data' => $records,
+        ];
+        return view('uploader.show', $data);
     }
 
-    public function finish(Request $req)
+    public function add()
     {
-        $uploader = new \App\Uploader;
-        $uploader->username = $req->username;
-        $uploader->save();
+        return view('uploader.add');
+    }
 
-        // レコードを挿入したときのIDを取得
-        $lastInsertedId = $uploader->id;
+    public function create(Request $request)
+    {
+        $file_name = $request->file('file');
+        Storage::disk('s3')->putFile('images', $file_name, 'public');
 
-        // ディレクトリを作成
-        if (!file_exists(public_path() . "/img/" . $lastInsertedId)) {
-            mkdir(public_path() . "/img/" . $lastInsertedId, 0777);
+        $j = 0;
+        for ($i=0; $i<1000000; $i++)
+        {
+            $j++;
         }
 
-        // 一時保存から本番の格納場所へ移動
-        rename(public_path() . $req->thum, public_path() . "/img/" . $lastInsertedId . "/thum." .pathinfo($req->thum, PATHINFO_EXTENSION));
+        $url = Storage::disk('s3')->url($file_name);
+        $param = [
+            'file_name' => $file_name,
+            'url' => $url,
+        ];
 
-        return view('uploader.finish');
+        DB::insert('insert into images (file_name, url) values (:file_name, :url)', $param);
+        return redirect()->action('UploaderController@show');
     }
 
 }

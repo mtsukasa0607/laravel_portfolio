@@ -18,7 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-// 検証コード
+
+// 検証用コード
 Route::get('/hello', 'HelloController@index');
 
 Route::get('/hello/storage_index', 'HelloController@storage_index');
@@ -35,16 +36,16 @@ Route::get('/s3upload/show', 'S3uploadController@show');
 Route::get('/s3sql', 'S3sqlController@index');
 Route::get('/s3sql/show', 'S3sqlController@show');
 
-
-
-
 Route::get('/posts', 'PostsController@index');
 Route::post('/posts', 'PostsController@upload')->name('upload');
 
 Route::get('/testCrud/index', 'TestCrudController@index');
 Route::get('/testCrud/show', 'TestCrudController@show');
 
-
+// 開発用コード
+Route::get('/uploader/add', 'UploaderController@add');
+Route::post('/uploader/create', 'UploaderController@create');
+Route::get('/uploader/show', 'UploaderController@show');
 
 Auth::routes();
 
