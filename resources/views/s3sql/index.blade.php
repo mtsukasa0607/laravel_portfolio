@@ -1,4 +1,3 @@
-
 @extends('layouts.helloapp')
 
 @section('title', 'Index')
@@ -12,4 +11,3 @@
 @section('footer')
     copyright 2020
 @endsection
-

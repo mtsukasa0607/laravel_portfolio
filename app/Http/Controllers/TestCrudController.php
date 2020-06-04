@@ -33,5 +33,4 @@ class TestCrudController extends Controller
         DB::insert('insert into items (name, mail, age) values (:name, :mail, :age)', $param);
         return redirect('testCrud/show');
     }
-    
 }

@@ -21,14 +21,30 @@ Route::get('/', function () {
 // 検証コード
 Route::get('/hello', 'HelloController@index');
 
+Route::get('/hello/storage_index', 'HelloController@storage_index');
+Route::get('/hello/other/{msg}', 'HelloController@other');
+
+Route::get('/good', 'goodController@index');
+Route::get('/good/other/{msg}', 'goodController@other');
+Route::post('/good/other', 'goodController@other');
+
+Route::get('/s3upload', 'S3uploadController@index');
+Route::post('/s3upload/other', 'S3uploadController@other');
+Route::get('/s3upload/show', 'S3uploadController@show');
+
+Route::get('/s3sql', 'S3sqlController@index');
+Route::get('/s3sql/show', 'S3sqlController@show');
+
+
+
+
 Route::get('/posts', 'PostsController@index');
 Route::post('/posts', 'PostsController@upload')->name('upload');
 
 Route::get('/testCrud/index', 'TestCrudController@index');
 Route::get('/testCrud/show', 'TestCrudController@show');
 
-Route::get('/testCrud/add', 'TestCrudController@add');
-Route::post('/testCrud/add', 'TestCrudController@create');
+
 
 Auth::routes();
 

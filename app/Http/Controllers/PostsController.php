@@ -37,11 +37,7 @@ class PostsController extends Controller
             'image_file_name' => $path,
             'image_title' => $request->comment
         ]);
-        
-        return redirect('posts.index', [
-            'image_file_name' => $path,
-            'image_title' => $request->comment
-        ]);
+        return redirect('posts.index');
     }
 
     //ページ表示
