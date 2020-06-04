@@ -31,6 +31,8 @@ Route::get('/s3upload', 'S3uploadController@index');
 Route::post('/s3upload/other', 'S3uploadController@other');
 Route::get('/s3upload/show', 'S3uploadController@show');
 
+Route::get('/s3sql', 'S3sqlController@index');
+Route::get('/s3sql/show', 'S3sqlController@show');
 
 
 
