@@ -21,6 +21,8 @@ Route::get('/', function () {
 
 // 検証用コード
 Route::get('/hello', 'HelloController@index');
+Route::get('/hello/show', 'HelloController@show');
+Route::get('/hello/delete', 'HelloController@delete');
 
 Route::get('/hello/storage_index', 'HelloController@storage_index');
 Route::get('/hello/other/{msg}', 'HelloController@other');
@@ -47,7 +49,7 @@ Route::get('/uploader/add', 'UploaderController@add');
 Route::post('/uploader/create', 'UploaderController@create');
 Route::get('/uploader/show', 'UploaderController@show');
 Route::get('/uploader/edit/{id?}', 'UploaderController@edit');
-Route::get('/uploader/delete/{id?}{file_name?}', 'UploaderController@delete');
+Route::get('/uploader/delete/{id?}', 'UploaderController@delete');
 
 
 Auth::routes();
