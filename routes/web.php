@@ -48,7 +48,8 @@ Route::get('/testCrud/show', 'TestCrudController@show');
 Route::get('/uploader/add', 'UploaderController@add');
 Route::post('/uploader/create', 'UploaderController@create');
 Route::get('/uploader/show', 'UploaderController@show');
-Route::get('/uploader/edit/{id?}', 'UploaderController@edit');
+Route::get('/uploader/edit/{id?}', 'UploaderController@edit')->name('edit');
+Route::post('/uploader/update', 'UploaderController@update');
 Route::get('/uploader/delete/{id?}', 'UploaderController@delete');
 
 

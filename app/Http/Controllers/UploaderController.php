@@ -54,9 +54,10 @@ class UploaderController extends Controller
         $param = [
             'file_name' => $file_name,
             'url' => $url,
+            'title' => $request->title,
         ];
 
-        DB::insert('insert into images (file_name, url) values (:file_name, :url)', $param);
+        DB::insert('insert into images (file_name, url, title) values (:file_name, :url ,:title)', $param);
         return redirect()->action('UploaderController@show');
     }
 
@@ -68,6 +69,15 @@ class UploaderController extends Controller
             'data' => $record,
         ];
         return view('uploader.edit', $data);
+    }
+
+    public function update(Request $request){
+        $param = [
+            'id' => $request->id,
+            'title' => $request->title,
+        ];
+        DB::update("update images set title =:title where id=:id", $param);
+        return redirect()->route('edit', ['id' => $request->id,]);
     }
 
     public function delete(Request $request)

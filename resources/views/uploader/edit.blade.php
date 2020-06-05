@@ -13,12 +13,21 @@
     @foreach($data as $record)
         <p>イメーID：{{$record -> id}}</p>
         <p>イメージ名：{{$record -> file_name}}</p>
+        <p>タイトル名：{{$record -> title}}</p>
         <p>投稿日時：{{$record -> created_at}}</p>
         <img src="{{$record -> url}}" alt="{{$record -> file_name}}" width="600px">
-        <br><br>
-        <button onclick="location.href='/uploader/show'">編集</button>
-        <button onclick="location.href='/uploader/delete?id={{$record -> id}}'">削除</button>
     @endforeach
+
+    <h2>投稿の編集</h2>
+    <form action="/uploader/update" method="post">
+        @csrf
+        <input type="hidden" name="id" value="{{$record -> id}}">
+        <label for="edit_title">タイトル名：</label>
+        <input type="text" name="title" id="edit_title">
+        <input type="submit" value="編集する">
+    </form>
+    <br><br>
+    <button onclick="location.href='/uploader/delete?id={{$record -> id}}'">投稿を削除する</button>
 @endsection
 
 @section('footer')
