@@ -44,16 +44,13 @@ class UploaderController extends Controller
 
     public function create(Request $request)
     {
-        $file_name = $request->file('file');
-        Storage::disk('s3')->putFile('images', $file_name, 'public');
+        $ext = '.' . $request->file('file')->extension();
+        $file_name = time() . $ext;
+        $dir = 'images';
+        Storage::disk('s3')->putFileAs($dir, $request->file('file'), $file_name);
 
-        $j = 0;
-        for ($i=0; $i<1000000; $i++)
-        {
-            $j++;
-        }
+        $url = 'https://s3.ap-northeast-1.amazonaws.com/mtsukasa0607.com/' . $dir . '/' . $file_name;
 
-        $url = Storage::disk('s3')->url($file_name);
         $param = [
             'file_name' => $file_name,
             'url' => $url,
