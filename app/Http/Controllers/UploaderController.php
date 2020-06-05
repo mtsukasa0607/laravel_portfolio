@@ -60,4 +60,33 @@ class UploaderController extends Controller
         return redirect()->action('UploaderController@show');
     }
 
+    public function edit(Request $request)
+    {
+        $id = $request['id'];
+        $record = DB::select("select * from images where id={$id}");
+        $data = [
+            'data' => $record,
+        ];
+        return view('uploader.edit', $data);
+    }
+
+    public function delete(Request $request)
+    {
+        $param = [
+            'id' => $request->id,
+        ];
+
+        $file_name = $request->file_name;
+        $dir = 'images';
+        //$path = '/' . $dir . '/' . $file_name;
+
+        //$record = DB::select("select * from images where id = :id", $param);
+        
+        
+
+        DB::delete("delete from images where id = :id", $param);
+        Storage::disk('s3')->delete($file_name);
+        return redirect()->action('UploaderController@show');
+    }
+
 }

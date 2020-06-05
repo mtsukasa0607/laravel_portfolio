@@ -4,6 +4,8 @@
 
 @section('header')
     <p>ヘッダー</p>
+    <h2>ナビゲーション</h2>
+    <a href="/uploader/show" name="id">全表示</a>
 @endsection
     
 @section('content')
