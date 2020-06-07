@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
         // 検証コード
 
         // $this->call(ItemsTableSeeder::class);
-        $this->call(ImagesTableSeeder::class);
+        // $this->call(ImagesTableSeeder::class);
+        $this->call(PeopleTableSeeder::class);
 
     }
 }

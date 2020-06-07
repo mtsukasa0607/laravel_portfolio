@@ -44,6 +44,9 @@ Route::post('/posts', 'PostsController@upload')->name('upload');
 Route::get('/testCrud/index', 'TestCrudController@index');
 Route::get('/testCrud/show', 'TestCrudController@show');
 
+Route::get('/person', 'PersonController@index');
+
+
 // 開発用コード
 Route::get('/uploader/add', 'UploaderController@add');
 Route::post('/uploader/create', 'UploaderController@create');

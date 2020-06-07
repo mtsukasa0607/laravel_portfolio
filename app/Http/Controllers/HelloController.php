@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class HelloController extends Controller
 {
@@ -19,11 +21,17 @@ class HelloController extends Controller
     }
 
 
-    public function index() {
-        $data = [
-            'msg'=>'これはHelloを利用したサンプルです。',
+    public function index(Request $request)
+    {
+        $user = Auth::user();
+        $sort = $request->sort;
+        $items = Person::orderBy($sort, 'asc')->simplePaginate(5);
+        $param = [
+            'items' => $items,
+            'sort' => $sort,
+            'user' => $user,
         ];
-        return view('hello.index', $data);
+        return view('hello.index', $param);
     }
 
     public function show()
