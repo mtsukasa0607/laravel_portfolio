@@ -1,15 +1,22 @@
 @extends('layouts.helloapp')
 
-
-@section('title', 'person/index')
+@section('title', 'person/login_check')
 
 @section('header')
     <p>ヘッダー</p>
 @endsection
-    
+
+
+
 @section('content')
     <p>ここが本文のコンテンツです。</p>
     <p>必要なだけ記述できます。</p>
+
+    @if (Auth::check())
+        <p>USER: {{$user->name . '(' . $user->email . ')'}}</p>
+    @else
+        <p>ログインしていません。(<a href="/login">ログイン</a> | <a href="/register">登録</a>)</p>
+    @endif
 
     <table>
         <tr>
@@ -28,6 +35,8 @@
     {{ $items->appends(['sort' => $sort])->links() }}
     
 @endsection
+
+
 
 @section('footer')
     <p>フッター</p>

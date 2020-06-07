@@ -1,5 +1,6 @@
 <html>
     <head>
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <title>@yield('title')</title>
     </head>
     <body>
@@ -14,7 +15,7 @@
         <div>
             <hr>
             @yield('footer')
-            <p>&copy;Copyright All Rights Reserved.</p>
+            <p>&copy;Copyright 2020 All Rights Reserved.</p>
         </div>
     </body>
 </html>

@@ -45,6 +45,7 @@ Route::get('/testCrud/index', 'TestCrudController@index');
 Route::get('/testCrud/show', 'TestCrudController@show');
 
 Route::get('/person', 'PersonController@index');
+Route::get('/person/login_check', 'PersonController@login_check');
 
 
 // 開発用コード
