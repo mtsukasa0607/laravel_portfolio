@@ -30,6 +30,10 @@ Route::get('/hello/other/{msg}', 'HelloController@other');
 Route::get('/hello/auth', 'HelloController@getAuth');
 Route::post('/hello/auth', 'HelloController@postAuth');
 
+Route::get('/hello/session', 'HelloController@ses_get');
+Route::post('/hello/session', 'HelloController@ses_put');
+
+
 Route::get('/good', 'goodController@index');
 Route::get('/good/other/{msg}', 'goodController@other');
 Route::post('/good/other', 'goodController@other');
