@@ -13,7 +13,7 @@
     <p>必要なだけ記述できます。</p>
 
     @if (Auth::check())
-        <p>USER: {{$user->name . '(' . $user->email . ')'}}</p>
+        <p>USER: {{$user->name . '(' . $user->email . ')'}} がログイン中です。</p>
     @else
         <p>ログインしていません。(<a href="/login">ログイン</a> | <a href="/register">登録</a>)</p>
     @endif

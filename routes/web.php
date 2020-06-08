@@ -20,12 +20,15 @@ Route::get('/', function () {
 });
 
 // 検証用コード
-Route::get('/hello', 'HelloController@index');
+Route::get('/hello', 'HelloController@index')->middleware('auth');
 Route::get('/hello/show', 'HelloController@show');
 Route::get('/hello/delete', 'HelloController@delete');
 
 Route::get('/hello/storage_index', 'HelloController@storage_index');
 Route::get('/hello/other/{msg}', 'HelloController@other');
+
+Route::get('/hello/auth', 'HelloController@getAuth');
+Route::post('/hello/auth', 'HelloController@postAuth');
 
 Route::get('/good', 'goodController@index');
 Route::get('/good/other/{msg}', 'goodController@other');

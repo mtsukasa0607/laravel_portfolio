@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Perosn;
 
 class HelloController extends Controller
 {
@@ -23,15 +24,34 @@ class HelloController extends Controller
 
     public function index(Request $request)
     {
-        $user = Auth::user();
-        $sort = $request->sort;
-        $items = Person::orderBy($sort, 'asc')->simplePaginate(5);
+        //$items = Person::all()->simplePaginate(3);
+        $items = DB::table('people')->simplePaginate(3);
         $param = [
             'items' => $items,
-            'sort' => $sort,
-            'user' => $user,
         ];
         return view('hello.index', $param);
+    }
+
+    public function getAuth(Request $request)
+    {
+        $param = [
+            'message' => 'ログインして下さい。',
+        ];
+        return view('hello.auth', $param);
+
+    }
+
+    public function postAuth(Request $request)
+    {
+        $email = $request->email;
+        $password = $request->password;
+
+        if(Auth::attempt(['email' => $email, 'password' => $password])) {
+            $msg = 'ログインしました。' . Auth::user()->name;
+        } else {
+            $msg = 'ログインに失敗しました。';
+        }
+        return view('hello.auth', ['message' => $msg]);
     }
 
     public function show()
