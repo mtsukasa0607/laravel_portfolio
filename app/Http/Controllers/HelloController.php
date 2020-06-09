@@ -21,6 +21,11 @@ class HelloController extends Controller
         $this->fname = 'sample.txt';
     }
 
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return redirect()->action('HelloController@index');
+    }
 
     public function index(Request $request)
     {

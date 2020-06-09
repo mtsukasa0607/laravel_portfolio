@@ -20,7 +20,14 @@ Route::get('/', function () {
 });
 
 // 検証用コード
-Route::get('/hello', 'HelloController@index')->middleware('auth');
+Route::get('/hello', 'HelloController@index');
+
+Route::get('/hello/logout', 'HelloController@logout');
+
+
+
+
+
 Route::get('/hello/show', 'HelloController@show');
 Route::get('/hello/delete', 'HelloController@delete');
 
@@ -32,6 +39,12 @@ Route::post('/hello/auth', 'HelloController@postAuth');
 
 Route::get('/hello/session', 'HelloController@ses_get');
 Route::post('/hello/session', 'HelloController@ses_put');
+
+
+
+
+
+
 
 
 Route::get('/good', 'goodController@index');

@@ -1,10 +1,16 @@
 
-@extends('layouts.helloapp')
+@extends('layouts.auth')
 
 @section('title', 'hello/index')
 
 @section('header')
     <p>ヘッダー</p>
+    @if(Auth::check())
+        <a href="/hello/logout">logout</a>
+    @else
+        <a href="{{ route('login') }}">{{ __('Login') }}</a><br>
+        <a href="{{ route('register') }}">{{ __('Register') }}</a>
+    @endif
 @endsection
     
 @section('content')
