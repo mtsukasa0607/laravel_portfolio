@@ -15,9 +15,15 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', 'HelloController@welcome');
+
+
+
+
 
 // 検証用コード
 Route::get('/hello', 'HelloController@index');

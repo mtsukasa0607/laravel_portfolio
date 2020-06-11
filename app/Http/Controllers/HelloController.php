@@ -21,6 +21,11 @@ class HelloController extends Controller
         $this->fname = 'sample.txt';
     }
 
+    public function welcome()
+    {
+        return view('welcome.index');
+    }
+
     public function logout(Request $request)
     {
         Auth::logout();
@@ -29,8 +34,7 @@ class HelloController extends Controller
 
     public function index(Request $request)
     {
-        //$items = Person::all()->simplePaginate(3);
-        $items = DB::table('people')->simplePaginate(3);
+        $items = DB::table('users')->simplePaginate(5);
         $param = [
             'items' => $items,
         ];
