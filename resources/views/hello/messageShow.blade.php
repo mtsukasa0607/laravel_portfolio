@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 
-@section('title', 'hello/post')
+@section('title', 'hello/messageShow')
 
 @section('header')
     <p>ヘッダー</p>
@@ -9,33 +9,34 @@
     
 @section('content')
     
-    <p>ここが本文のコンテンツです。</p>
-    <p>必要なだけ記述できます。</p>
+    <h3>メッセージを投稿する</h3>
 
-    <form action="/hello/post" method="post">
+    <form action="/hello/messageShow" method="post">
         <table>
             @csrf
-            
             <tr><th>message: </th><td><input type="text" name="message"></td></tr>
             <tr><th></th><td><input type="submit" value="投稿する"></td></tr>
         </table>
     </form>
 
-
     <table border="1">
         <tr>
-        <th>id</th><th>user_id</th><th>message</th>
+        <th>user</th><th>message</th>
         </tr>
         @foreach ($items as $item)
             <tr>
-                <td>{{$item->id}}</td>
-                <td>{{$item->user_id}}</td>
-                <td>{{$item->message}}</td>
+                <td>{{$item->getData()}}</td>
+                <td>
+                    @if ($item->messages != null)
+                        @foreach ($item->messages as $obj)
+                            <p>{{$obj->getData()}}</p>
+                        @endforeach
+                    @endif
+                </td>
             </tr>
         @endforeach
     </table>
     {{ $items->links() }}
-    
 
 
 @endsection

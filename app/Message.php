@@ -20,8 +20,8 @@ class Message extends Model
 
     public function getData()
     {
-        return $this->id . ': ' . $this->message . ': ' . $this->user->name;
-        // return $this->id . ': ' . $this->message;
+        return $this->message;
+        // return $this->id . ': ' . $this->message . ': ' . $this->user->name;
     }
 
 }

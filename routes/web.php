@@ -27,10 +27,17 @@ Route::get('/', 'HelloController@welcome');
 
 // 検証用コード
 Route::get('/hello', 'HelloController@index');
+
+Route::get('/hello/logout', 'HelloController@logout');
+
+Route::get('/hello/messageShow', 'HelloController@messageShow');
+Route::post('/hello/messageShow', 'HelloController@messageCreate');
+
+
+
 Route::get('/hello/post', 'HelloController@post');
 Route::post('/hello/post', 'HelloController@create');
 
-Route::get('/hello/logout', 'HelloController@logout');
 Route::get('/hello/check', 'HelloController@check');
 
 

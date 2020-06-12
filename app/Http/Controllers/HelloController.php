@@ -33,6 +33,24 @@ class HelloController extends Controller
         return redirect()->action('HelloController@index');
     }
 
+    public function messageShow()
+    {
+        $items = User::simplePaginate(5);
+        return view('hello.messageShow', ['items' => $items]);
+    }
+
+    public function messageCreate(Request $request)
+    {
+        $message = new Message;
+        $message->user_id = $request->user()->id;
+        $message->message = $request->message;
+        $message->save();
+        return redirect()->action('HelloController@messageShow');
+    }
+
+
+
+    
     public function index(Request $request)
     {
         $items = DB::table('users')->simplePaginate(5);
@@ -51,7 +69,7 @@ class HelloController extends Controller
 
     public function check(Request $request)
     {
-        $items = User::simplePaginate(10);
+        $items = User::simplePaginate(5);
         return view('hello.check', ['items' => $items]);
     }
 
@@ -59,15 +77,24 @@ class HelloController extends Controller
 
     public function create(Request $request)
     {
-        $this->validate($request, Message::$rules);
-        $message = new Message;
-        $form = $request->all();
-        unset($form['_token']);
-        $message->fill($form)->save();
 
-        return redirect()->action('HelloController@post');;
+        $message = new Message;
+        $message->user_id = $request->user()->id;
+        $message->message = $request->message;
+        $message->save();
+
+
+        // $this->validate($request, Message::$rules);
+        // $message = new Message;
+        // $form = $request->all();
+        // unset($form['_token']);
+        // $message->fill($form)->save();
+
+        return redirect()->action('HelloController@post');
     }
 
+
+    
     // public function create(Request $request)
     // {
     //     $this->validate($request, Message::$rules);
@@ -78,6 +105,8 @@ class HelloController extends Controller
 
     //     return redirect()->action('HelloController@post');;
     // }
+
+    
 
 
 

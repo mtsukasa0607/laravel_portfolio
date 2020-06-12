@@ -41,7 +41,7 @@ class User extends Authenticatable
 
     public function getData()
     {
-        return $this->id . ': ' . $this->name . '(' . $this->email . ')';
+        return $this->name;
     }
 
     public function message()
