@@ -6,7 +6,7 @@
     <body>
         <div>
             @yield('header')
-            
+             
             @if(Auth::check())
                 <a href="/hello/logout">logout</a>
             @else

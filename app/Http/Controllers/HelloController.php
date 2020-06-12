@@ -49,6 +49,14 @@ class HelloController extends Controller
         return view('hello.post', ['items' => $items]);
     }
 
+    public function check(Request $request)
+    {
+        $items = User::simplePaginate(10);
+        return view('hello.check', ['items' => $items]);
+    }
+
+
+
     public function create(Request $request)
     {
         $this->validate($request, Message::$rules);
@@ -59,6 +67,17 @@ class HelloController extends Controller
 
         return redirect()->action('HelloController@post');;
     }
+
+    // public function create(Request $request)
+    // {
+    //     $this->validate($request, Message::$rules);
+    //     $message = new Message;
+    //     $form = $request->all();
+    //     unset($form['_token']);
+    //     $message->fill($form)->save();
+
+    //     return redirect()->action('HelloController@post');;
+    // }
 
 
 

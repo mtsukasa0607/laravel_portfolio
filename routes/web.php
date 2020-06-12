@@ -31,7 +31,7 @@ Route::get('/hello/post', 'HelloController@post');
 Route::post('/hello/post', 'HelloController@create');
 
 Route::get('/hello/logout', 'HelloController@logout');
-
+Route::get('/hello/check', 'HelloController@check');
 
 
 

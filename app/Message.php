@@ -13,8 +13,15 @@ class Message extends Model
         'message' => 'required',
     );
 
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
     public function getData()
     {
-        return $this->id . ': ' . $this->message;
+        return $this->id . ': ' . $this->message . ': ' . $this->user->name;
+        // return $this->id . ': ' . $this->message;
     }
+
 }
