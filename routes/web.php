@@ -27,6 +27,8 @@ Route::get('/', 'HelloController@welcome');
 
 // 検証用コード
 Route::get('/hello', 'HelloController@index');
+Route::get('/hello/post', 'HelloController@post');
+Route::post('/hello/post', 'HelloController@create');
 
 Route::get('/hello/logout', 'HelloController@logout');
 

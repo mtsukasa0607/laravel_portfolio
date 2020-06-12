@@ -9,8 +9,12 @@
 @endsection
     
 @section('content')
+    <a href="/hello/post">メッセージの投稿をする</a>
     <p>ここが本文のコンテンツです。</p>
     <p>必要なだけ記述できます。</p>
+
+    
+
 
     <table border="1">
         <tr>

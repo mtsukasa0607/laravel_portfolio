@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Perosn;
+use App\Message;
 
 class HelloController extends Controller
 {
@@ -40,6 +41,26 @@ class HelloController extends Controller
         ];
         return view('hello.index', $param);
     }
+
+    
+    public function post(Request $request)
+    {
+        $items = Message::simplePaginate(10);
+        return view('hello.post', ['items' => $items]);
+    }
+
+    public function create(Request $request)
+    {
+        $this->validate($request, Message::$rules);
+        $message = new Message;
+        $form = $request->all();
+        unset($form['_token']);
+        $message->fill($form)->save();
+
+        return redirect()->action('HelloController@post');;
+    }
+
+
 
     public function getAuth(Request $request)
     {
