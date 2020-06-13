@@ -30,7 +30,7 @@ class HelloController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
-        return redirect()->action('HelloController@messageShow');
+        return redirect()->action('PhotoController@photoShow');
     }
 
     public function messageShow()

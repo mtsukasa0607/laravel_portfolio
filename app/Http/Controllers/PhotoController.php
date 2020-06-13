@@ -48,10 +48,68 @@ class PhotoController extends Controller
     public function photoDetail(Request $request)
     {
         $id = $request['id'];
-        $record = DB::select("select * from photos where id={$id}");
+        $record = Photo::find($id);
+
+        $user = Auth::user();
+        if ($user) {
+            $login_id = $user->id;
+        } else {
+            $login_id = 'no login';
+        }
+
         $data = [
-            'data' => $record,
+            'record' => $record,
+            'login_id' => $login_id,
         ];
+
         return view('photo.photoDetail', $data);
     }
+
+    public function photoDelete(Request $request)
+    {
+        $photo = Photo::find($request->id);
+        $data = [
+            'data' => $photo,
+        ];
+        return view('photo.photoDelete', $data);
+    }
+
+    public function photoRemove(Request $request)
+    {
+        $record = photo::find($request->id);
+
+        $file_name = $record->file_name;
+        $dir = 'images';
+        $path = '/' . $dir . '/' . $file_name;
+        Storage::disk('s3')->delete($path);
+        
+        $record->delete();
+        return redirect()->action('PhotoController@photoShow');
+    }
+
+    public function photoEdit(Request $request)
+    {
+        $photo = Photo::find($request->id);
+        $data = [
+            'data' => $photo,
+        ];
+        return view('photo.photoEdit', $data);
+    }
+
+    public function photoUpdate(Request $request)
+    {
+        $photo = Photo::find($request->id);
+        $photo->title = $request->title;
+        $photo->content = $request->content;
+        $photo->save();
+        return redirect()->action('PhotoController@photoShow');
+
+
+        // $photo = Photo::find($request->id);
+        // $data = $request->all();
+        // unset($data['_token']);
+        // $photo->fill($data)->save();
+        // return redirect()->action('PhotoController@photoShow');
+    }
+
 }

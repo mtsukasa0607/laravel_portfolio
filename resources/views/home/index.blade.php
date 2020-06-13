@@ -15,7 +15,7 @@
                     @endif
 
                     <p>You are logged in!</p>
-                    <a href="/hello/messageShow">一覧画面へ進む</a>
+                    <a href="/photo/photoShow">一覧画面へ進む</a>
                 </div>
             </div>
         </div>

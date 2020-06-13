@@ -10,27 +10,28 @@
 @endsection
 
 @section('content')
-    @foreach($data as $record)
-        <p>イメージID：{{$record -> id}}</p>
-        <p>イメージ名：{{$record -> file_name}}</p>
-        <p>ユーザーID：{{$record -> user_id}}</p>
-        <p>ユーザー名：</p>
-        <p>タイトル名：{{$record -> title}}</p>
-        <p>コンテンツ：{{$record -> content}}</p>
-        <p>投稿日時：{{$record -> created_at}}</p>
-        <img src="{{$record -> url}}" alt="{{$record -> file_name}}" width="400px">
-    @endforeach
+    
+        
+    <p>イメージ名/ID：{{$record -> file_name}}({{$record -> id}})</p>
+    <p>ユーザー名/ID：{{$record -> user->getName()}}({{$record -> user_id}})</p>
+    <p>投稿日時：{{$record -> created_at}}</p>
+    <img src="{{$record -> url}}" alt="{{$record -> file_name}}" width="400px">
+    <h3>タイトル名：{{$record -> title}}</h3>
+    <p>コンテンツ：{{$record -> content}}</p>
 
-    <h2>投稿の編集</h2>
-    <form action="/uploader/update" method="post">
-        @csrf
-        <input type="hidden" name="id" value="{{$record -> id}}">
-        <label for="edit_title">タイトル名：</label>
-        <input type="text" name="title" id="edit_title">
-        <input type="submit" value="編集する">
-    </form>
+
     <br><br>
-    <button onclick="location.href='/uploader/delete?id={{$record -> id}}'">投稿を削除する</button>
+    @if ($record -> getUserId() == $login_id)
+        <p><a href="/photo/photoEdit?id={{$record -> getId()}}">編集する</a></p>
+        <p><a href="/photo/photoDelete?id={{$record -> getId()}}">削除する</a></p>
+    @else
+        <p>ROM ONLY</p>
+        <p>ROM ONLY</p>
+    @endif
+    <br><br>
+
+
+
 @endsection
 
 @section('footer')
