@@ -44,6 +44,11 @@ class User extends Authenticatable
         return $this->name;
     }
 
+    public function getName()
+    {
+        return $this->name;
+    }
+
     public function message()
     {
         return $this->hasOne('App\Message');

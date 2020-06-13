@@ -28,10 +28,18 @@ Route::get('/', 'HelloController@welcome');
 // 検証用コード
 Route::get('/hello', 'HelloController@index');
 
+
 Route::get('/hello/logout', 'HelloController@logout');
 
+
 Route::get('/hello/messageShow', 'HelloController@messageShow');
-Route::post('/hello/messageShow', 'HelloController@messageCreate');
+Route::post('/hello/messageShow', 'HelloController@messageCreate')->middleware('auth');
+Route::get('/hello/messageDelete', 'HelloController@messageDelete');
+Route::post('/hello/messageDelete', 'HelloController@messageRemove');
+Route::get('/hello/messageEdit', 'HelloController@messageEdit');
+Route::post('/hello/messageEdit', 'HelloController@messageUpdate');
+
+
 
 
 

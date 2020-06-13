@@ -21,23 +21,24 @@
 
     <table border="1">
         <tr>
-        <th>user</th><th>message</th>
+        <th>user</th><th>message</th><th>updated_at</th><th></th><th></th>
         </tr>
         @foreach ($items as $item)
             <tr>
-                <td>{{$item->getData()}}</td>
-                <td>
-                    @if ($item->messages != null)
-                        @foreach ($item->messages as $obj)
-                            <p>{{$obj->getData()}}</p>
-                        @endforeach
-                    @endif
-                </td>
+                <td>{{$item->user->getName()}}</td>
+                <td>{{$item->getMessage()}}</td>
+                <td>{{$item->getUpdatedAt()}}</td>
+                @if ($item->getUserId() == $login_id)
+                    <td><a href="/hello/messageEdit?id={{$item->getId()}}">Edit</a></td>
+                    <td><a href="/hello/messageDelete?id={{$item->getId()}}">Delete</a></td>
+                @else
+                    <td></td>
+                    <td></td>
+                @endif
             </tr>
         @endforeach
     </table>
     {{ $items->links() }}
-
 
 @endsection
 

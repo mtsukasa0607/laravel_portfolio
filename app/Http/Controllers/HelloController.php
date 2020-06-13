@@ -30,13 +30,25 @@ class HelloController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
-        return redirect()->action('HelloController@index');
+        return redirect()->action('HelloController@messageShow');
     }
 
     public function messageShow()
     {
-        $items = User::simplePaginate(5);
-        return view('hello.messageShow', ['items' => $items]);
+        $user = Auth::user();
+        if ($user) {
+            $login_id = $user->id;
+        } else {
+            $login_id = 'no login';
+        }
+
+        $items = Message::orderBy('updated_at', 'desc')->paginate(10);
+        
+        $data = [
+            'items' => $items,
+            'login_id' => $login_id,
+        ];
+        return view('hello.messageShow', $data);
     }
 
     public function messageCreate(Request $request)
@@ -45,6 +57,39 @@ class HelloController extends Controller
         $message->user_id = $request->user()->id;
         $message->message = $request->message;
         $message->save();
+        return redirect()->action('HelloController@messageShow');
+    }
+
+    public function messageEdit(Request $request)
+    {
+        $message = Message::find($request->id);
+        $data = [
+            'form' => $message,
+        ];
+        return view('hello.messageEdit', $data);
+    }
+
+    public function messageUpdate(Request $request)
+    {
+        $message = Message::find($request->id);
+        $form = $request->all();
+        unset($form['_token']);
+        $message->fill($form)->save();
+        return redirect()->action('HelloController@messageShow');
+    }
+
+    public function messageDelete(Request $request)
+    {
+        $message = Message::find($request->id);
+        $data = [
+            'form' => $message,
+        ];
+        return view('hello.messageDelete', $data);
+    }
+
+    public function messageRemove(Request $request)
+    {
+        Message::find($request->id)->delete();
         return redirect()->action('HelloController@messageShow');
     }
 
