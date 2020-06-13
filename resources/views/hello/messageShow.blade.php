@@ -32,8 +32,8 @@
                     <td><a href="/hello/messageEdit?id={{$item->getId()}}">Edit</a></td>
                     <td><a href="/hello/messageDelete?id={{$item->getId()}}">Delete</a></td>
                 @else
-                    <td></td>
-                    <td></td>
+                    <td>―――</td>
+                    <td>―――</td>
                 @endif
             </tr>
         @endforeach

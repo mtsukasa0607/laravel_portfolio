@@ -27,10 +27,7 @@ Route::get('/', 'HelloController@welcome');
 
 // 検証用コード
 Route::get('/hello', 'HelloController@index');
-
-
 Route::get('/hello/logout', 'HelloController@logout');
-
 
 Route::get('/hello/messageShow', 'HelloController@messageShow');
 Route::post('/hello/messageShow', 'HelloController@messageCreate')->middleware('auth');
@@ -39,6 +36,10 @@ Route::post('/hello/messageDelete', 'HelloController@messageRemove');
 Route::get('/hello/messageEdit', 'HelloController@messageEdit');
 Route::post('/hello/messageEdit', 'HelloController@messageUpdate');
 
+Route::get('/photo/photoShow', 'PhotoController@photoShow');
+Route::get('/photo/photoAdd', 'PhotoController@photoAdd');
+Route::post('/photo/photoCreate', 'PhotoController@photoCreate')->middleware('auth');;
+Route::get('/photo/photoDetail/{id?}', 'PhotoController@photoDetail');
 
 
 
@@ -47,7 +48,6 @@ Route::get('/hello/post', 'HelloController@post');
 Route::post('/hello/post', 'HelloController@create');
 
 Route::get('/hello/check', 'HelloController@check');
-
 
 
 
