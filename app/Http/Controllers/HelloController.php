@@ -128,32 +128,8 @@ class HelloController extends Controller
         $message->message = $request->message;
         $message->save();
 
-
-        // $this->validate($request, Message::$rules);
-        // $message = new Message;
-        // $form = $request->all();
-        // unset($form['_token']);
-        // $message->fill($form)->save();
-
         return redirect()->action('HelloController@post');
     }
-
-
-    
-    // public function create(Request $request)
-    // {
-    //     $this->validate($request, Message::$rules);
-    //     $message = new Message;
-    //     $form = $request->all();
-    //     unset($form['_token']);
-    //     $message->fill($form)->save();
-
-    //     return redirect()->action('HelloController@post');;
-    // }
-
-    
-
-
 
     public function getAuth(Request $request)
     {

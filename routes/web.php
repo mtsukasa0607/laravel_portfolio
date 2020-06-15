@@ -40,9 +40,12 @@ Route::post('/photo/photoCreate', 'PhotoController@photoCreate')->middleware('au
 Route::get('/photo/photoDetail/{id?}', 'PhotoController@photoDetail');
 Route::get('/photo/photoDelete/{id?}', 'PhotoController@photoDelete');
 Route::post('/photo/photoDelete', 'PhotoController@photoRemove');
-
 Route::get('/photo/photoEdit', 'PhotoController@photoEdit');
 Route::post('/photo/photoEdit', 'PhotoController@photoUpdate');
+Route::get('/photo/photoFind', 'PhotoController@photoFind');
+Route::post('/photo/photoFind', 'PhotoController@photoSearch');
+
+
 
 
 

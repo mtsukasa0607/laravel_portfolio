@@ -20,4 +20,9 @@ class Photo extends Model
     {
         return $this->user_id;
     }
+
+    public function getData()
+    {
+        return $this->id . ': ' . $this->user->name;
+    }
 }

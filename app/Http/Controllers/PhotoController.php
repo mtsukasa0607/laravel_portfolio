@@ -104,12 +104,34 @@ class PhotoController extends Controller
         $photo->save();
         return redirect()->action('PhotoController@photoShow');
 
-
-        // $photo = Photo::find($request->id);
-        // $data = $request->all();
-        // unset($data['_token']);
-        // $photo->fill($data)->save();
-        // return redirect()->action('PhotoController@photoShow');
     }
+
+    public function photoFind(Request $request)
+    {
+        return view('photo.photoFind', ['input' => '']);
+    }
+
+    public function photoSearch(Request $request)
+    {
+        $word = $request->input;
+        $item = Photo::where('title', 'like', "%{$word}%") -> orWhere('content', 'like', "%{$word}%") -> get();
+        $param = [
+            'input' => $request->input,
+            'item' => $item,
+        ];
+        return view('photo.photoFind', $param);
+
+
+
+        // $item = Photo::where('content', $request->input) -> first();
+        // $param = [
+        //     'input' => $request->input,
+        //     'item' => $item,
+        // ];
+        // return view('photo.photoFind', $param);
+    }
+
+
+
 
 }
