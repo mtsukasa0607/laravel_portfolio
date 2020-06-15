@@ -5,11 +5,24 @@
 @section('header')
     <p>ヘッダー</p>
     <h2>ナビゲーション</h2>
+    <a href="/photo/photoShow">一覧へ</a>
     <a href="/photo/photoAdd" name="id">投稿</a>
     <p>編集・削除は画像をクリック</p>
+
+    <form action="/photo/photoFind" method="post">
+        <table>
+            @csrf
+            <tr><th>search: </th><td><input type="text" name="input" value="{{$input}}"></td></tr>
+            <tr><th></th><td><input type="submit" value="検索する"></td></tr>
+        </table>
+    </form>
+
+
 @endsection
     
 @section('content')
+
+@if (isset($data))
     @foreach($data as $record)
         <p>イメージID：{{$record -> id}}</p>
         <p>ユーザーID：{{$record -> user_id}}</p>
@@ -25,6 +38,9 @@
         </a>
     @endforeach
     {{ $data->links() }}
+    
+@endif
+
 @endsection
 
 @section('footer')

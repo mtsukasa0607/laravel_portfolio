@@ -17,6 +17,7 @@ class PhotoController extends Controller
         $records = Photo::orderBy('updated_at', 'desc')->paginate(3);
         $data = [
             'data' => $records,
+            'input' => '',
         ];
         return view('photo.photoShow', $data);
     }
@@ -114,16 +115,17 @@ class PhotoController extends Controller
     public function photoSearch(Request $request)
     {
         $word = $request->input;
-        $item = Photo::where('title', 'like', "%{$word}%") -> orWhere('content', 'like', "%{$word}%") -> get();
+        $record = Photo::where('title', 'like', "%{$word}%") -> orWhere('content', 'like', "%{$word}%") ->  orderBy('updated_at', 'desc')->paginate(5);
         $param = [
             'input' => $request->input,
-            'item' => $item,
+            'data' => $record,
         ];
-        return view('photo.photoFind', $param);
+        return view('photo.photoShow', $param);
 
 
 
-        // $item = Photo::where('content', $request->input) -> first();
+        // $word = $request->input;
+        // $item = Photo::where('title', 'like', "%{$word}%") -> orWhere('content', 'like', "%{$word}%") -> get();
         // $param = [
         //     'input' => $request->input,
         //     'item' => $item,
