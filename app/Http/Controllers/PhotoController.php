@@ -14,10 +14,10 @@ class PhotoController extends Controller
 {
     public function photoShow()
     {
-        $records = Photo::orderBy('updated_at', 'desc')->paginate(3);
+        $records = Photo::orderBy('updated_at', 'desc')->paginate(10);
         $data = [
             'data' => $records,
-            'input' => '',
+            'input' => 'キーワードを入力',
         ];
         return view('photo.photoShow', $data);
     }
