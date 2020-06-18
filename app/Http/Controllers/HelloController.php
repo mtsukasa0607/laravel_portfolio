@@ -11,6 +11,8 @@ use App\User;
 use App\Perosn;
 use App\Message;
 
+use App\Http\Requests\ValidateRequest;
+
 class HelloController extends Controller
 {
     
@@ -51,8 +53,13 @@ class HelloController extends Controller
         return view('hello.messageShow', $data);
     }
 
-    public function messageCreate(Request $request)
+    public function messageCreate(ValidateRequest $request)
     {
+        // $validate_rule = [
+        //     'message' => 'required'
+        // ];
+        // $this->validate($request, $validate_rule);
+
         $message = new Message;
         $message->user_id = $request->user()->id;
         $message->message = $request->message;
@@ -69,7 +76,7 @@ class HelloController extends Controller
         return view('hello.messageEdit', $data);
     }
 
-    public function messageUpdate(Request $request)
+    public function messageUpdate(ValidateRequest $request)
     {
         $message = Message::find($request->id);
         $form = $request->all();

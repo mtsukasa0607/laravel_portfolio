@@ -3,21 +3,41 @@
 @section('title', 'hello/messageShow')
 
 @section('header')
-    <p>ヘッダー</p>
     
 @endsection
-    
+
+@section('nav')
+    <li class="list-inline-item"><a href="/photo/photoShow">Top</a></li>
+@endsection
+
+
 @section('content')
     
-    <h3>メッセージを投稿する</h3>
+    <br><h4>メッセージを投稿する</h4>
 
     <form action="/hello/messageShow" method="post">
         <table>
             @csrf
-            <tr><th>message: </th><td><input type="text" name="message"></td></tr>
-            <tr><th></th><td><input type="submit" value="投稿する"></td></tr>
+            <tr>
+                <td><input type="text" class="form-control" name="message"></td>
+                <td><input type="submit" class="form-control" value="送信"></td>
+            </tr>
         </table>
     </form>
+
+
+
+@if (count($errors) > 0)
+    <div>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li style="color:red;">{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+
 
     <table border="1">
         <tr>
@@ -37,11 +57,13 @@
                 @endif
             </tr>
         @endforeach
-    </table>
+    </table><br>
     {{ $items->links() }}
 
 @endsection
 
+
+
 @section('footer')
-    <p>フッター</p>
+
 @endsection

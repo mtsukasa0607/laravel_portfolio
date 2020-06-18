@@ -38,6 +38,11 @@ Route::get('/photo/photoShow', 'PhotoController@photoShow');
 Route::get('/photo/photoAdd', 'PhotoController@photoAdd');
 Route::post('/photo/photoCreate', 'PhotoController@photoCreate')->middleware('auth');;
 Route::get('/photo/photoDetail/{id?}', 'PhotoController@photoDetail');
+Route::post('/photo/photoDetail', 'PhotoController@photoComment');
+
+Route::get('/photo/photoCommentRemove/{id?}/{photo_id?}', 'PhotoController@photoCommentRemove');
+
+
 Route::get('/photo/photoDelete/{id?}', 'PhotoController@photoDelete');
 Route::post('/photo/photoDelete', 'PhotoController@photoRemove');
 Route::get('/photo/photoEdit', 'PhotoController@photoEdit');

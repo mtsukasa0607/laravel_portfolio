@@ -8,7 +8,7 @@
             @csrf
             <tr>
                 <td><input type="text" name="input" value="{{$input}}"></td>
-                <td><input type="submit" value="検索する"></td>
+                <td><input type="submit" value="検索"></td>
             </tr>
         </table>
     </form>
@@ -20,6 +20,7 @@
 @section('nav')
     <li class="list-inline-item"><a href="/photo/photoShow">Top</a></li>
     <li class="list-inline-item"><a href="/photo/photoAdd" name="id">投稿</a></li>
+    <li class="list-inline-item"><a href="/hello/messageShow">toDoList</a></li>
 @endsection
 
 

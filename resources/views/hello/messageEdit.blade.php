@@ -3,9 +3,14 @@
 @section('title', 'hello/messageEdit')
 
 @section('header')
-    <p>ヘッダー</p>
     
 @endsection
+
+@section('nav')
+    <li class="list-inline-item"><a href="/photo/photoShow">Top</a></li>
+@endsection
+
+
     
 @section('content')
     
@@ -23,5 +28,5 @@
 @endsection
 
 @section('footer')
-    <p>フッター</p>
+    
 @endsection

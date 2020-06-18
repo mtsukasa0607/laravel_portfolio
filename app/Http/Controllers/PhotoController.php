@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Photo;
+use App\Comment;
+
+use App\Http\Requests\ValidateRequest;
+use App\Http\Requests\PhotoValidateRequest;
 
 class PhotoController extends Controller
 {
@@ -27,7 +31,7 @@ class PhotoController extends Controller
         return view('photo.photoAdd');
     }
 
-    public function photoCreate(Request $request)
+    public function photoCreate(PhotoValidateRequest $request)
     {
         $ext = '.' . $request->file('file')->extension();
         $file_name = time() . $ext;
@@ -58,9 +62,12 @@ class PhotoController extends Controller
             $login_id = 'no login';
         }
 
+        $comments = Comment::where('photo_id', $id) -> orderBy('created_at', 'desc') -> get();
+
         $data = [
             'record' => $record,
             'login_id' => $login_id,
+            'comments' => $comments,
         ];
 
         return view('photo.photoDetail', $data);
@@ -97,7 +104,7 @@ class PhotoController extends Controller
         return view('photo.photoEdit', $data);
     }
 
-    public function photoUpdate(Request $request)
+    public function photoUpdate(ValidateRequest $request)
     {
         $photo = Photo::find($request->id);
         $photo->title = $request->title;
@@ -115,25 +122,36 @@ class PhotoController extends Controller
     public function photoSearch(Request $request)
     {
         $word = $request->input;
-        $record = Photo::where('title', 'like', "%{$word}%") -> orWhere('content', 'like', "%{$word}%") ->  orderBy('updated_at', 'desc')->paginate(5);
+        $record = Photo::where('title', 'like', "%{$word}%") -> orWhere('content', 'like', "%{$word}%") -> orderBy('updated_at', 'desc')->paginate(5);
         $param = [
             'input' => $request->input,
             'data' => $record,
         ];
         return view('photo.photoShow', $param);
 
-
-
-        // $word = $request->input;
-        // $item = Photo::where('title', 'like', "%{$word}%") -> orWhere('content', 'like', "%{$word}%") -> get();
-        // $param = [
-        //     'input' => $request->input,
-        //     'item' => $item,
-        // ];
-        // return view('photo.photoFind', $param);
     }
 
+    public function photoComment(Request $request)
+    {
+        $comment = new Comment;
+        $comment->photo_id = $request->photo_id;
 
+        $user = Auth::user();
+        if ($user) {
+            $user_id = $user->id;
+        }
+        $comment->user_id = $user_id;
+        $comment->comment = $request->comment;
+        $comment->save();
+        
+        return redirect()->action('PhotoController@photoDetail', ['id' => $request->photo_id]);
+    }
+
+    public function photoCommentRemove(Request $request)
+    {
+        Comment::find($request->id)->delete();
+        return redirect()->action('PhotoController@photoDetail', ['id' => $request->photo_id]);
+    }
 
 
 }
