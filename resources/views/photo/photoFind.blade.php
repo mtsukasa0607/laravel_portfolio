@@ -3,10 +3,12 @@
 @section('title', 'photo/photoFind')
 
 @section('header')
-    <p>ヘッダー</p>
-    <h2>ナビゲーション</h2>
-    <a href="/photo/photoAdd" name="id">投稿</a>
     
+@endsection
+
+@section('nav')
+    <li class="list-inline-item"><a href="/photo/photoShow">Top</a></li>
+    <li class="list-inline-item"><a href="/photo/photoAdd" name="id">投稿</a></li>
 @endsection
     
 @section('content')
@@ -35,5 +37,5 @@
 @endsection
 
 @section('footer')
-    <p>フッター</p>
+    
 @endsection

@@ -20,7 +20,9 @@
 @section('nav')
     <li class="list-inline-item"><a href="/photo/photoShow">Top</a></li>
     <li class="list-inline-item"><a href="/photo/photoAdd" name="id">投稿</a></li>
-    <li class="list-inline-item"><a href="/hello/messageShow">toDoList</a></li>
+    @if(Auth::check())
+        <li class="list-inline-item">こんにちは、{{ $user->name }} さん</li>
+    @endif
 @endsection
 
 
@@ -30,16 +32,18 @@
 @if (isset($data))
     <div class="row">
         @foreach($data as $record)
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <div class="card mx-auto my-5" style="width:300px;">
+            <!-- <div> -->
+            <div class="mx-auto col-lg-4 col-md-5 col-sm-5 col-12" >
 
+                <div class="card mx-auto my-3">
+                <!-- <div class="card mx-auto my-5" style="width:300px;"> -->
                     <a href="/photo/photoDetail?id={{$record -> id}}" name="id">
-                        <img src="{{$record -> url}}" alt="{{$record -> file_name}}" style="width:298px;">
+                        <img src="{{$record -> url}}" alt="{{$record -> file_name}}" style="width: 100%;">
                     </a>
 
                     <div class="card-body">
                         <h4 class="card-title">{{$record -> title}}</h4>
-                        <p>{{$record -> user -> getName()}}</p>
+                        <p>投稿者: {{$record -> user -> getName()}} さん</p>
                         <p>投稿日時：{{$record -> created_at}}</p>
                     </div>
                 </div>

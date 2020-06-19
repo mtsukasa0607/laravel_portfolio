@@ -19,7 +19,8 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', 'HelloController@welcome');
+// Route::get('/', 'HelloController@welcome');
+Route::get('/', 'PhotoController@photoShow');
 
 
 
@@ -41,6 +42,7 @@ Route::get('/photo/photoDetail/{id?}', 'PhotoController@photoDetail');
 Route::post('/photo/photoDetail', 'PhotoController@photoComment');
 
 Route::get('/photo/photoCommentRemove/{id?}/{photo_id?}', 'PhotoController@photoCommentRemove');
+
 
 
 Route::get('/photo/photoDelete/{id?}', 'PhotoController@photoDelete');

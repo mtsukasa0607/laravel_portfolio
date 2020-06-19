@@ -14,13 +14,14 @@
 
 
 @section('content')
+    <div class="mx-auto col-lg-4 col-md-5 col-sm-5 col-12">
     
-    <h3>投稿を編集する</h3>
-    <p>更新日時：{{$data -> updated_at}}</p>
-    <img src="{{$data -> url}}" alt="{{$data -> file_name}}" width="400px"><br><br>
+        <h3>投稿を編集する</h3>
+        <p>更新日時：{{$data -> updated_at}}</p>
+        <img src="{{$data -> url}}" alt="{{$data -> file_name}}" width="100%"><br><br>
 
-    <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-3">
+        
+        <div>
             <form action="/photo/photoEdit" method="post">
                 @csrf
                 <input type="hidden" name="id" value="{{$data -> id}}">
@@ -32,7 +33,7 @@
                 </div>
 
                 @if ($errors -> has('title'))
-                    <p style="color:red;">{{$errors->first('title')}}</p>
+                    <p class="alert alert-danger">{{$errors->first('title')}}</p>
                 @endif
 
                 <div class="form-group">
@@ -42,15 +43,15 @@
                 </div>
 
                 @if ($errors -> has('content'))
-                    <p style="color:red;">{{$errors->first('content')}}</p>
+                    <p class="alert alert-danger">{{$errors->first('content')}}</p>
                 @endif
-
 
                 <input type="submit" class="form-control btn btn-dark" value="保存する">
             </form>
         </div>
-    </div>
+        
 
+    </div>
 
 
 @endsection

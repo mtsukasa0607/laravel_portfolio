@@ -13,15 +13,21 @@ use App\Comment;
 
 use App\Http\Requests\ValidateRequest;
 use App\Http\Requests\PhotoValidateRequest;
+use App\Http\Requests\CommentValidateRequest;
+
+
 
 class PhotoController extends Controller
 {
     public function photoShow()
     {
-        $records = Photo::orderBy('updated_at', 'desc')->paginate(10);
+        $user = Auth::user();
+
+        $records = Photo::orderBy('created_at', 'desc')->paginate(9);
         $data = [
             'data' => $records,
             'input' => 'キーワードを入力',
+            'user' => $user,
         ];
         return view('photo.photoShow', $data);
     }
@@ -122,7 +128,7 @@ class PhotoController extends Controller
     public function photoSearch(Request $request)
     {
         $word = $request->input;
-        $record = Photo::where('title', 'like', "%{$word}%") -> orWhere('content', 'like', "%{$word}%") -> orderBy('updated_at', 'desc')->paginate(5);
+        $record = Photo::where('title', 'like', "%{$word}%") -> orWhere('content', 'like', "%{$word}%") -> orderBy('updated_at', 'desc')->paginate(6);
         $param = [
             'input' => $request->input,
             'data' => $record,
@@ -131,7 +137,7 @@ class PhotoController extends Controller
 
     }
 
-    public function photoComment(Request $request)
+    public function photoComment(CommentValidateRequest $request)
     {
         $comment = new Comment;
         $comment->photo_id = $request->photo_id;

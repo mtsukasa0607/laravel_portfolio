@@ -37,7 +37,7 @@
                             @yield('nav')
                         
                             @if(Auth::check())
-                                    <li class="list-inline-item"><a href="/hello/logout">logout</a></li>
+                                    <li class="list-inline-item"><a href="/hello/logout">Logout</a></li>
                                 @else
                                     <li class="list-inline-item"><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
                                     <li class="list-inline-item"><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
@@ -46,18 +46,18 @@
                     </nav>
                 </div>
                 
-
             </div>
 
-            <div class="container-fruid px-5 mx-5 my-3">
+            <div class="container-fruid px-5 mx-auto mt-5">
+            <!-- <div class="container-fruid px-5 mx-auto col-lg-4 col-md-5 col-sm-5 col-12"> -->
 
-                <div>
-                    
+                <!-- <div>
                     <h1>@yield('title')</h1>
                     <hr>
-                </div>
+                </div> -->
 
                 <div class="mb-5 pb-5">
+                <!-- <div> -->
                     @yield('content')
                 </div>
             </div>

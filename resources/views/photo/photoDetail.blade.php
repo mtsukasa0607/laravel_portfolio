@@ -13,49 +13,69 @@
 
 
 @section('content')
-    
-    <p>ユーザー名：{{$record -> user->getName()}}</p>
-    <img src="{{$record -> url}}" alt="{{$record -> file_name}}" width="400px"><br><br>
-    <h3>{{$record -> title}}</h3>
-    <p>コンテンツ：{{$record -> content}}</p>
-    <p>投稿日時：{{$record -> created_at}}</p>
 
-    <br><h4>コメントする</h4>
+    <div class="mx-auto col-lg-4 col-md-5 col-sm-5 col-12">
+        
+        <p>投稿者: {{$record -> user->getName()}} さん</p>
+        <img src="{{$record -> url}}" alt="{{$record -> file_name}}" width="100%"><br><br>
+        
+        <h3>{{$record -> title}}</h3>
+        <p>{!! nl2br($record -> content) !!}</p>
+        <p>投稿日時：{{$record -> created_at}}</p>
 
-    <form action="/photo/photoDetail" method="post">
-        <table>
+        <br><h4>コメントする</h4>
+
+        <form action="/photo/photoDetail" method="post">
+            
             @csrf
             <input type="hidden" name="photo_id" value="{{$record -> id}}">
-            <tr>
-                <td><input type="text" class="form-control" name="comment"></td>
-                <td><input type="submit" class="form-control" value="送信"></td>
-            </tr>
-        </table>
-    </form>
-
-    @if (isset($comments))
-        @foreach($comments as $value)
-            <p>user: {{$value -> user -> getName()}} comment: {{$value -> comment}} created_at: {{$value -> created_at}}</p>
-
-            @if ($value -> user -> getId() == $login_id)
-                <button class="btn btn-dark" 
-                onclick="location.href='/photo/photoCommentRemove?id={{$value->id}}&photo_id={{$record -> id}}'">削除</button>
+            <textarea type="textarea" class="form-control" name="comment"></textarea>
+            <small class="form-text text-muted">コメントは140字以内</small>
+            
+            @if ($errors -> has('comment'))
+                <p class="alert alert-danger">{{$errors->first('comment')}}</p>
             @endif
+            
+            <br><input type="submit" class="form-control btn btn-dark" value="送信">
+            
+        </form>
 
-        @endforeach
-    @endif
+
+        @if (isset($comments))
+            <br>
+            
+            @foreach($comments as $value)
+                
+                <div class="card mb-1">
+                    <div class="card-body">
+                        <p>{{$value -> user -> getName()}} さん</p>
+                        <p>{!! nl2br($value -> comment) !!}</p>
+                        <p>{{ $value -> created_at }}</p>
+                        <p>
+                            @if ($value -> user -> getId() == $login_id)
+                                <a href="/photo/photoCommentRemove?id={{$value->id}}&photo_id={{$record -> id}}">削除</a>
+                            @endif
+                        </p>
+                    </div>
+                </div>
+            @endforeach
+            
+        @endif
 
 
 
-    <br><br>
-    @if ($record -> getUserId() == $login_id)
-        <button class="btn btn-dark" onclick="location.href='/photo/photoEdit?id={{$record -> getId()}}'">編集する</button>
-        <button class="btn btn-dark" onclick="location.href='/photo/photoDelete?id={{$record -> getId()}}'">削除する</button>
-    @else
-        <p>ROM ONLY</p>
-    @endif
-    <br><br>
+        <br><br>
+        @if ($record -> getUserId() == $login_id)
+            
+            <button class="btn btn-dark" onclick="location.href='/photo/photoEdit?id={{$record -> getId()}}'">編集する</button>
+            <button class="btn btn-dark" onclick="location.href='/photo/photoDelete?id={{$record -> getId()}}'">削除する</button>
+            
+        @else
+            <p>ROM ONLY</p>
+        @endif
+        <br><br>
 
+    </div>
 
 
 @endsection
