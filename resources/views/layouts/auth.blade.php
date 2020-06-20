@@ -23,9 +23,9 @@
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-        
         <title>@yield('title')</title>
     </head>
+    
     <body>
         <div class="container-fruid">
             <div class="bg-dark text-white px-5 py-2 clearfix">
@@ -52,20 +52,7 @@
             </div>
 
             <div class="container-fruid px-5 mx-auto mt-5">
-
-
-            <!-- <img src="{{ asset('/images/night-spa.jpg') }}" alt="logo" style="background-repeat: repeat-x;"> -->
-            
-            
-            <!-- <div class="container-fruid px-5 mx-auto col-lg-4 col-md-5 col-sm-5 col-12"> -->
-
-                <!-- <div>
-                    <h1>@yield('title')</h1>
-                    <hr>
-                </div> -->
-
                 <div class="mb-5 pb-5">
-                <!-- <div> -->
                     @yield('content')
                 </div>
             </div>

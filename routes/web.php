@@ -13,103 +13,42 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Route::get('/', 'HelloController@welcome');
 Route::get('/', 'PhotoController@photoShow');
+Route::get('/photo/photoShow', 'PhotoController@photoShow');
+Route::get('/photo/photoAdd', 'PhotoController@photoAdd')->middleware('auth');
+Route::post('/photo/photoCreate', 'PhotoController@photoCreate')->middleware('auth');
+Route::get('/photo/photoDetail/{id?}', 'PhotoController@photoDetail');
+Route::post('/photo/photoDetail', 'PhotoController@photoComment')->middleware('auth');
+Route::get('/photo/photoCommentRemove/{id?}/{photo_id?}', 'PhotoController@photoCommentRemove');
+Route::get('/photo/photoDelete/{id?}', 'PhotoController@photoDelete');
+Route::post('/photo/photoDelete', 'PhotoController@photoRemove');
+Route::get('/photo/photoEdit', 'PhotoController@photoEdit');
+Route::post('/photo/photoEdit', 'PhotoController@photoUpdate');
+Route::get('/photo/photoFind', 'PhotoController@photoShow');
+Route::post('/photo/photoFind', 'PhotoController@photoSearch');
 
 
 
-// 検証用コード
 Route::get('/hello', 'HelloController@index');
 Route::get('/hello/logout', 'HelloController@logout');
-
 Route::get('/hello/messageShow', 'HelloController@messageShow');
 Route::post('/hello/messageShow', 'HelloController@messageCreate')->middleware('auth');
 Route::get('/hello/messageDelete', 'HelloController@messageDelete');
 Route::post('/hello/messageDelete', 'HelloController@messageRemove');
 Route::get('/hello/messageEdit', 'HelloController@messageEdit');
 Route::post('/hello/messageEdit', 'HelloController@messageUpdate');
-
-Route::get('/photo/photoShow', 'PhotoController@photoShow');
-Route::get('/photo/photoAdd', 'PhotoController@photoAdd');
-Route::post('/photo/photoCreate', 'PhotoController@photoCreate')->middleware('auth');;
-Route::get('/photo/photoDetail/{id?}', 'PhotoController@photoDetail');
-Route::post('/photo/photoDetail', 'PhotoController@photoComment');
-
-Route::get('/photo/photoCommentRemove/{id?}/{photo_id?}', 'PhotoController@photoCommentRemove');
-
-
-
-Route::get('/photo/photoDelete/{id?}', 'PhotoController@photoDelete');
-Route::post('/photo/photoDelete', 'PhotoController@photoRemove');
-Route::get('/photo/photoEdit', 'PhotoController@photoEdit');
-Route::post('/photo/photoEdit', 'PhotoController@photoUpdate');
-Route::get('/photo/photoFind', 'PhotoController@photoFind');
-Route::post('/photo/photoFind', 'PhotoController@photoSearch');
-
-
-
-
-
 Route::get('/hello/post', 'HelloController@post');
 Route::post('/hello/post', 'HelloController@create');
-
 Route::get('/hello/check', 'HelloController@check');
-
-
-
 Route::get('/hello/show', 'HelloController@show');
 Route::get('/hello/delete', 'HelloController@delete');
-
 Route::get('/hello/storage_index', 'HelloController@storage_index');
 Route::get('/hello/other/{msg}', 'HelloController@other');
-
 Route::get('/hello/auth', 'HelloController@getAuth');
 Route::post('/hello/auth', 'HelloController@postAuth');
-
 Route::get('/hello/session', 'HelloController@ses_get');
 Route::post('/hello/session', 'HelloController@ses_put');
 
-
-
-
-
-
-
-
-Route::get('/good', 'goodController@index');
-Route::get('/good/other/{msg}', 'goodController@other');
-Route::post('/good/other', 'goodController@other');
-
-Route::get('/s3upload', 'S3uploadController@index');
-Route::post('/s3upload/other', 'S3uploadController@other');
-Route::get('/s3upload/show', 'S3uploadController@show');
-
-Route::get('/s3sql', 'S3sqlController@index');
-Route::get('/s3sql/show', 'S3sqlController@show');
-
-Route::get('/posts', 'PostsController@index');
-Route::post('/posts', 'PostsController@upload')->name('upload');
-
-Route::get('/testCrud/index', 'TestCrudController@index');
-Route::get('/testCrud/show', 'TestCrudController@show');
-
-Route::get('/person', 'PersonController@index');
-Route::get('/person/login_check', 'PersonController@login_check');
-
-
-// 開発用コード
-Route::get('/uploader/add', 'UploaderController@add');
-Route::post('/uploader/create', 'UploaderController@create');
-Route::get('/uploader/show', 'UploaderController@show');
-Route::get('/uploader/edit/{id?}', 'UploaderController@edit')->name('edit');
-Route::post('/uploader/update', 'UploaderController@update');
-Route::get('/uploader/delete/{id?}', 'UploaderController@delete');
 
 
 Auth::routes();
