@@ -48,7 +48,7 @@
                 
                 <div class="card mb-1">
                     <div class="card-body">
-                        <p>{{$value -> user -> getName()}} さん</p>
+                        <p><i class="fas fa-user-circle"></i> {{$value -> user -> getName()}} さん</p>
                         <p>{!! nl2br($value -> comment) !!}</p>
                         <p>{{ $value -> created_at }}</p>
                         <p>
@@ -71,7 +71,7 @@
             <button class="btn btn-dark" onclick="location.href='/photo/photoDelete?id={{$record -> getId()}}'">削除する</button>
             
         @else
-            <p>ROM ONLY</p>
+            <!-- <p>ROM ONLY</p> -->
         @endif
         <br><br>
 

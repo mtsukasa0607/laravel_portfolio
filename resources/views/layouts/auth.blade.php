@@ -16,6 +16,10 @@
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
         <!-- <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> -->
 
+
+        <!-- Fontawesome -->
+        <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
@@ -27,8 +31,7 @@
             <div class="bg-dark text-white px-5 py-2 clearfix">
                 
                 <nav class="navbar">
-                    <h1><a class="text-decoration-none text-white" href="/photo/photoShow">
-                        Spa & Sauna</a></h1>
+                    <h1><i class="fas fa-temperature-high"></i><a class="text-decoration-none text-white" href="/photo/photoShow"> Spa & Sauna</a></h1>
                     @yield('header')
                 </nav>
                 <div class=" float-right">
@@ -49,6 +52,11 @@
             </div>
 
             <div class="container-fruid px-5 mx-auto mt-5">
+
+
+            <!-- <img src="{{ asset('/images/night-spa.jpg') }}" alt="logo" style="background-repeat: repeat-x;"> -->
+            
+            
             <!-- <div class="container-fruid px-5 mx-auto col-lg-4 col-md-5 col-sm-5 col-12"> -->
 
                 <!-- <div>
