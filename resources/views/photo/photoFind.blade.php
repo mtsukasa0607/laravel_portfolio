@@ -3,7 +3,15 @@
 @section('title', 'photo/photoFind')
 
 @section('header')
-    
+    <form action="/photo/photoFind" method="post">
+        <table>
+            @csrf
+            <tr>
+                <td><input type="text" name="input" value="{{$input}}"></td>
+                <td><input type="submit" value="検索"></td>
+            </tr>
+        </table>
+    </form>
 @endsection
 
 @section('nav')
@@ -12,27 +20,26 @@
 @endsection
     
 @section('content')
-    <h3>検索ページ</h3>
-
-    <form action="/photo/photoFind" method="post">
-        <table>
-            @csrf
-            <tr><th>search: </th><td><input type="text" name="input" value="{{$input}}"></td></tr>
-            <tr><th></th><td><input type="submit" value="検索する"></td></tr>
-        </table>
-    </form>
     
-    @if (isset($item))
-        <table>
-                <tr><th>Data</th></tr>
-
-        @foreach($item as $record)
-            <tr><td>{{$record -> getData()}}</td></tr>
-            <tr><td><img src="{{$record -> url}}" width="300px"></td></tr>
+    @if (isset($data))
+    <div class="row">
+        @foreach($data as $record)
+            <div class="mx-auto col-lg-4 col-md-5 col-sm-5 col-12" >
+                <div class="card mx-auto my-3">
+                    <a href="/photo/photoDetail?id={{$record -> id}}" name="id">
+                        <img src="{{$record -> url}}" alt="{{$record -> file_name}}" style="width: 100%;">
+                    </a>
+                    <div class="card-body">
+                        <h4 class="card-title">{{$record -> title}}</h4>
+                        <p>投稿者: {{$record -> user -> getName()}} さん</p>
+                        <p>投稿日時：{{$record -> created_at}}</p>
+                    </div>
+                </div>
+            </div> 
         @endforeach
-        
-        </table>
-    @endif
+    </div>
+    {{ $data->links() }}
+@endif
 
 @endsection
 

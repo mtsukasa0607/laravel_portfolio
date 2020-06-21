@@ -129,11 +129,14 @@ class PhotoController extends Controller
     {
         $word = $request->input;
         $record = Photo::where('title', 'like', "%{$word}%") -> orWhere('content', 'like', "%{$word}%") -> orderBy('updated_at', 'desc')->paginate(9);
+
+        
         $param = [
             'input' => $request->input,
             'data' => $record,
         ];
-        return view('photo.photoShow', $param);
+        // return view('photo.photoShow', $param);
+        return view('photo.photoFind', $param);
     }
 
     public function photoComment(CommentValidateRequest $request)

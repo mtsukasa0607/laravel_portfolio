@@ -24,6 +24,7 @@ Route::get('/photo/photoDelete/{id?}', 'PhotoController@photoDelete');
 Route::post('/photo/photoDelete', 'PhotoController@photoRemove');
 Route::get('/photo/photoEdit', 'PhotoController@photoEdit');
 Route::post('/photo/photoEdit', 'PhotoController@photoUpdate');
+
 Route::get('/photo/photoFind', 'PhotoController@photoShow');
 Route::post('/photo/photoFind', 'PhotoController@photoSearch');
 
@@ -54,3 +55,4 @@ Route::post('/hello/session', 'HelloController@ses_put');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/auth/login', 'HomeController@login');

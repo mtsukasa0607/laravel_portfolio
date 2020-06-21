@@ -44,6 +44,7 @@
                                 @else
                                     <li class="list-inline-item"><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
                                     <li class="list-inline-item"><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                                    <li class="list-inline-item"><a href="/auth/login">Login-2</a></li>
                             @endif
                         </ul>
                     </nav>
@@ -58,8 +59,8 @@
             </div>
 
             <div class="fixed-bottom bg-dark text-white">
-                    @yield('footer')
-                    <p class="mx-5 my-2">&copy; Copyright 2020 All Rights Reserved.</p>
+                @yield('footer')
+                <p class="mx-5 my-2">&copy; Copyright 2020 All Rights Reserved.</p>
             </div>
 
         </div>
