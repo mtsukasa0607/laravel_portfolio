@@ -7,7 +7,7 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'Spa & Sauna') }}</title>
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
@@ -44,7 +44,6 @@
                                 @else
                                     <li class="list-inline-item"><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
                                     <li class="list-inline-item"><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
-                                    <li class="list-inline-item"><a href="/auth/login">Login-2</a></li>
                             @endif
                         </ul>
                     </nav>
