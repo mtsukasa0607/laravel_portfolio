@@ -20,7 +20,7 @@
         <img src="{{$record -> url}}" alt="{{$record -> file_name}}" width="100%"><br><br>
         
         <h3>{{$record -> title}}</h3>
-        <p>{!! nl2br($record -> content) !!}</p>
+        <p>{!! nl2br(e($record -> content)) !!}</p>
         <p>投稿日時：{{$record -> created_at}}</p>
 
         <br><h4>コメントする</h4>
@@ -49,7 +49,7 @@
                 <div class="card mb-1">
                     <div class="card-body">
                         <p><i class="fas fa-user-circle"></i> {{$value -> user -> getName()}} さん</p>
-                        <p>{!! nl2br($value -> comment) !!}</p>
+                        <p>{!! nl2br(e($value -> comment)) !!}</p>
                         <p>{{ $value -> created_at }}</p>
                         <p>
                             @if ($value -> user -> getId() == $login_id)

@@ -28,7 +28,7 @@
             @csrf
             <input type="hidden" name="id" value="{{$data->id}}">
             <h4>{{$data -> title}}</h4>
-            <p>{!! nl2br($data -> content) !!}</p>
+            <p>{!! nl2br(e($data -> content)) !!}</p>
             <p>投稿日時: {{$data -> updated_at}}</p>
             <input type="submit" class="form-control btn btn-dark" value="削除する">
 

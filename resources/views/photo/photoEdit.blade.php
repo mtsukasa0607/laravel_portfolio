@@ -38,7 +38,7 @@
 
                 <div class="form-group">
                     <label for="content">コンテツ</label>
-                    <textarea class="form-control" name="content">{{$data -> content}}</textarea>
+                    <textarea class="form-control" name="content">{{{$data -> content}}}</textarea>
                     <small class="form-text text-muted">コンテンツは400字以内</small>
                 </div>
 
