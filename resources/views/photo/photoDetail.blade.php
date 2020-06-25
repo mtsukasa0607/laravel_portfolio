@@ -66,12 +66,8 @@
 
         <br><br>
         @if ($record -> getUserId() == $login_id)
-            
             <button class="btn btn-dark" onclick="location.href='/photo/photoEdit?id={{$record -> getId()}}'">編集する</button>
-            <button class="btn btn-dark" onclick="location.href='/photo/photoDelete?id={{$record -> getId()}}'">削除する</button>
-            
-        @else
-            <!-- <p>ROM ONLY</p> -->
+            <button class="btn btn-dark" onclick="location.href='/photo/photoDelete'">削除する</button>
         @endif
         <br><br>
 

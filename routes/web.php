@@ -2,16 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::get('/photo/photoDelete', 'PhotoController@photoDelete');
+Route::post('/photo/photoDelete', 'PhotoController@photoRemove');
+
+
+
+
 
 Route::get('/', 'PhotoController@photoShow');
 Route::get('/photo/photoShow', 'PhotoController@photoShow');
@@ -20,8 +16,8 @@ Route::post('/photo/photoCreate', 'PhotoController@photoCreate')->middleware('au
 Route::get('/photo/photoDetail/{id?}', 'PhotoController@photoDetail');
 Route::post('/photo/photoDetail', 'PhotoController@photoComment')->middleware('auth');
 Route::get('/photo/photoCommentRemove/{id?}/{photo_id?}', 'PhotoController@photoCommentRemove');
-Route::get('/photo/photoDelete/{id?}', 'PhotoController@photoDelete');
-Route::post('/photo/photoDelete', 'PhotoController@photoRemove');
+
+
 Route::get('/photo/photoEdit', 'PhotoController@photoEdit');
 Route::post('/photo/photoEdit', 'PhotoController@photoUpdate');
 
