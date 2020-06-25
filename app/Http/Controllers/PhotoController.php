@@ -100,7 +100,7 @@ class PhotoController extends Controller
         $file_name = $photo->file_name;
         $dir = 'images';
         $path = '/' . $dir . '/' . $file_name;
-        
+
         Storage::disk('s3')->delete($path);
         $photo->delete();
         return redirect()->action('PhotoController@photoShow');
@@ -108,7 +108,8 @@ class PhotoController extends Controller
 
     public function photoEdit(Request $request)
     {
-        $photo = Photo::find($request->id);
+        $session_photo_id = $request->session()->get('session_photo_id');
+        $photo = Photo::find($session_photo_id);
         $data = [
             'data' => $photo,
         ];
@@ -117,12 +118,12 @@ class PhotoController extends Controller
 
     public function photoUpdate(ValidateRequest $request)
     {
-        $photo = Photo::find($request->id);
+        $session_photo_id = $request->session()->get('session_photo_id');
+        $photo = Photo::find($session_photo_id);
         $photo->title = $request->title;
         $photo->content = $request->content;
         $photo->save();
         return redirect()->action('PhotoController@photoShow');
-
     }
 
     public function photoFind(Request $request)

@@ -4,9 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/photo/photoDelete', 'PhotoController@photoDelete');
 Route::post('/photo/photoDelete', 'PhotoController@photoRemove');
-
-
-
+Route::get('/photo/photoEdit', 'PhotoController@photoEdit');
+Route::post('/photo/photoEdit', 'PhotoController@photoUpdate');
 
 
 Route::get('/', 'PhotoController@photoShow');
@@ -18,8 +17,8 @@ Route::post('/photo/photoDetail', 'PhotoController@photoComment')->middleware('a
 Route::get('/photo/photoCommentRemove/{id?}/{photo_id?}', 'PhotoController@photoCommentRemove');
 
 
-Route::get('/photo/photoEdit', 'PhotoController@photoEdit');
-Route::post('/photo/photoEdit', 'PhotoController@photoUpdate');
+
+
 
 Route::get('/photo/photoFind', 'PhotoController@photoShow');
 Route::post('/photo/photoFind', 'PhotoController@photoSearch');
