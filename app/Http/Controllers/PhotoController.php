@@ -103,6 +103,8 @@ class PhotoController extends Controller
 
         Storage::disk('s3')->delete($path);
         $photo->delete();
+        $comments = Comment::where('photo_id', $session_photo_id)->delete();
+        
         return redirect()->action('PhotoController@photoShow');
     }
 

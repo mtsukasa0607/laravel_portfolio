@@ -13,9 +13,7 @@
 
 
 @section('content')
-
     <div class="mx-auto col-lg-4 col-md-5 col-sm-5 col-12">
-        
         <p>投稿者: {{$record -> user->getName()}} さん</p>
         <img src="{{$record -> url}}" alt="{{$record -> file_name}}" width="100%"><br><br>
         
@@ -26,26 +24,20 @@
         <br><h4>コメントする</h4>
 
         <form action="/photo/photoDetail" method="post">
-            
             @csrf
             <input type="hidden" name="photo_id" value="{{$record -> id}}">
             <textarea type="textarea" class="form-control" name="comment"></textarea>
             <small class="form-text text-muted">コメントは140字以内</small>
-            
             @if ($errors -> has('comment'))
                 <p class="alert alert-danger">{{$errors->first('comment')}}</p>
             @endif
-            
             <br><input type="submit" class="form-control btn btn-dark" value="送信">
-            
         </form>
 
 
         @if (isset($comments))
             <br>
-            
             @foreach($comments as $value)
-                
                 <div class="card mb-1">
                     <div class="card-body">
                         <p><i class="fas fa-user-circle"></i> {{$value -> user -> getName()}} さん</p>
@@ -58,11 +50,8 @@
                         </p>
                     </div>
                 </div>
-            @endforeach
-            
+            @endforeach    
         @endif
-
-
 
         <br><br>
         @if ($record -> getUserId() == $login_id)
@@ -70,12 +59,5 @@
             <button class="btn btn-dark" onclick="location.href='/photo/photoDelete'">削除する</button>
         @endif
         <br><br>
-
     </div>
-
-
-@endsection
-
-@section('footer')
-    
 @endsection
