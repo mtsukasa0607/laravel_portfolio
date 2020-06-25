@@ -19,6 +19,11 @@ use App\Http\Requests\CommentValidateRequest;
 
 class PhotoController extends Controller
 {
+    public function top()
+    {
+        return redirect()->action('PhotoController@photoShow');
+    }
+
     public function photoShow()
     {
         $user = Auth::user();
@@ -177,5 +182,10 @@ class PhotoController extends Controller
         return redirect()->action('PhotoController@photoDetail', ['id' => $request->photo_id]);
     }
 
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return redirect()->action('PhotoController@photoShow');
+    }
 
 }

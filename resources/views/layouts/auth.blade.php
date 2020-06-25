@@ -40,7 +40,7 @@
                             @yield('nav')
                         
                             @if(Auth::check())
-                                    <li class="list-inline-item"><a href="/hello/logout">Logout</a></li>
+                                    <li class="list-inline-item"><a href="/photo/logout">Logout</a></li>
                                 @else
                                     <li class="list-inline-item"><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
                                     <li class="list-inline-item"><a href="{{ route('register') }}">{{ __('Register') }}</a></li>

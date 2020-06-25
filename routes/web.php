@@ -2,14 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', 'PhotoController@top');
 Route::get('/photo/photoDelete', 'PhotoController@photoDelete');
 Route::post('/photo/photoDelete', 'PhotoController@photoRemove');
 Route::get('/photo/photoEdit', 'PhotoController@photoEdit');
 Route::post('/photo/photoEdit', 'PhotoController@photoUpdate');
 Route::post('/photo/photoFind', 'PhotoController@photoSearch');
+Route::get('/photo/logout', 'PhotoController@logout');
 
 
-Route::get('/', 'PhotoController@photoShow');
+
 Route::get('/photo/photoShow', 'PhotoController@photoShow');
 Route::get('/photo/photoAdd', 'PhotoController@photoAdd')->middleware('auth');
 Route::post('/photo/photoCreate', 'PhotoController@photoCreate')->middleware('auth');
@@ -23,7 +25,7 @@ Route::get('/photo/photoCommentRemove/{id?}/{photo_id?}', 'PhotoController@photo
 
 
 Route::get('/hello', 'HelloController@index');
-Route::get('/hello/logout', 'HelloController@logout');
+
 Route::get('/hello/messageShow', 'HelloController@messageShow');
 Route::post('/hello/messageShow', 'HelloController@messageCreate')->middleware('auth');
 Route::get('/hello/messageDelete', 'HelloController@messageDelete');
