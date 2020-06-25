@@ -7,7 +7,7 @@
         <table>
             @csrf
             <tr>
-                <td><input type="text" name="input" value="{{$input}}"></td>
+                <td><input type="text" name="input" value="{{$input}}" required></td>
                 <td><input type="submit" value="検索"></td>
             </tr>
         </table>
@@ -20,7 +20,7 @@
 @endsection
     
 @section('content')
-    
+    <h3>{{ $msg }}</h3>
     @if (isset($data))
     <div class="row">
         @foreach($data as $record)

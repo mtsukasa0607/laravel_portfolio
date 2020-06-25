@@ -6,6 +6,7 @@ Route::get('/photo/photoDelete', 'PhotoController@photoDelete');
 Route::post('/photo/photoDelete', 'PhotoController@photoRemove');
 Route::get('/photo/photoEdit', 'PhotoController@photoEdit');
 Route::post('/photo/photoEdit', 'PhotoController@photoUpdate');
+Route::post('/photo/photoFind', 'PhotoController@photoSearch');
 
 
 Route::get('/', 'PhotoController@photoShow');
@@ -18,10 +19,6 @@ Route::get('/photo/photoCommentRemove/{id?}/{photo_id?}', 'PhotoController@photo
 
 
 
-
-
-Route::get('/photo/photoFind', 'PhotoController@photoShow');
-Route::post('/photo/photoFind', 'PhotoController@photoSearch');
 
 
 

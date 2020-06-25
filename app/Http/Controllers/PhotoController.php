@@ -104,7 +104,7 @@ class PhotoController extends Controller
         Storage::disk('s3')->delete($path);
         $photo->delete();
         $comments = Comment::where('photo_id', $session_photo_id)->delete();
-        
+
         return redirect()->action('PhotoController@photoShow');
     }
 
@@ -137,13 +137,21 @@ class PhotoController extends Controller
     {
         $word = $request->input;
         $record = Photo::where('title', 'like', "%{$word}%") -> orWhere('content', 'like', "%{$word}%") -> orderBy('updated_at', 'desc')->paginate(9);
+        $cnt = $record->count();
 
-        
+        if($cnt === 0)
+        {
+            $msg = "「" . $word . "」と一致する投稿はありません。";
+        } else {
+            $msg = $cnt . "件ヒットしました。";
+        }
+
         $param = [
             'input' => $request->input,
             'data' => $record,
+            'msg' => $msg,
         ];
-        // return view('photo.photoShow', $param);
+
         return view('photo.photoFind', $param);
     }
 
