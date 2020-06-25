@@ -10,8 +10,6 @@ Route::post('/photo/photoEdit', 'PhotoController@photoUpdate');
 Route::post('/photo/photoFind', 'PhotoController@photoSearch');
 Route::get('/photo/logout', 'PhotoController@logout');
 
-
-
 Route::get('/photo/photoShow', 'PhotoController@photoShow');
 Route::get('/photo/photoAdd', 'PhotoController@photoAdd')->middleware('auth');
 Route::post('/photo/photoCreate', 'PhotoController@photoCreate')->middleware('auth');
