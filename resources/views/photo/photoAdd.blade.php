@@ -22,7 +22,7 @@
             
             <div class="form-group">
                 <label for="title">タイトル</label>
-                <input type="text" class="form-control" name="title">
+                <input type="text" class="form-control" name="title" value="{{ old('title') }}">
                 <small class="form-text text-muted">タイトルは20字以内</small>
             </div>
 
@@ -32,7 +32,7 @@
 
             <div class="form-group">
                 <label for="content">コンテンツ</label>
-                <textarea type="textarea" class="form-control" name="content"></textarea>
+                <textarea type="textarea" class="form-control" name="content">{{ old('content') }}</textarea>
                 <small class="form-text text-muted">コンテンツは400字以内</small>
             </div>
 

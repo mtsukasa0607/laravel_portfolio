@@ -26,7 +26,7 @@
         <form action="/photo/photoDetail" method="post">
             @csrf
             <input type="hidden" name="photo_id" value="{{$record -> id}}">
-            <textarea type="textarea" class="form-control" name="comment"></textarea>
+            <textarea type="textarea" class="form-control" name="comment">{{ old('comment') }}</textarea>
             <small class="form-text text-muted">コメントは140字以内</small>
             @if ($errors -> has('comment'))
                 <p class="alert alert-danger">{{$errors->first('comment')}}</p>
