@@ -94,6 +94,9 @@ class PhotoController extends Controller
         $data = [
             'data' => $photo,
         ];
+
+        $this->authorize('delete', $photo);
+
         return view('photo.photoDelete', $data);
     }
 
@@ -120,6 +123,9 @@ class PhotoController extends Controller
         $data = [
             'data' => $photo,
         ];
+
+        $this->authorize('update', $photo);
+
         return view('photo.photoEdit', $data);
     }
 
@@ -187,5 +193,4 @@ class PhotoController extends Controller
         Auth::logout();
         return redirect()->action('PhotoController@photoShow');
     }
-
 }
