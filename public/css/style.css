@@ -1,1 +1,32 @@
-.pagination li { display: inline-block; }
+.image-top-show {
+    width: 100%;
+    object-fit: cover;
+}
+
+@media screen and (max-width:480px) { 
+    .image-top-show {
+        height: 220px;
+    }
+}
+@media screen and (min-width:480px) and ( max-width:768px) {
+    .image-top-show {
+        height: 230px;
+    }
+}
+@media screen and (min-width:768px) and ( max-width:992px) {
+    .image-top-show {
+        height: calc(100vw/4);
+    }
+}
+@media screen and (min-width:992px) and ( max-width:1200px) {
+    .image-top-show {
+        height: calc(100vw/5);
+    }
+}
+@media screen and (min-width:1200px) {
+    .image-top-show {
+        height: calc(100vw/5);
+    }
+}
+
+
