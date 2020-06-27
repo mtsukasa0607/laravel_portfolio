@@ -3,11 +3,11 @@
 @section('title', 'photo/photoFind')
 
 @section('header')
-    <form action="/photo/photoFind" method="post">
+    <form action="/photo/photoFind" method="get">
         <table>
             @csrf
             <tr>
-                <td><input type="text" name="input" value="{{$input}}" required></td>
+                <td><input type="text" name="input" value="{{$input}}" placeholder="キーワードを入力" required></td>
                 <td><input type="submit" value="検索"></td>
             </tr>
         </table>
@@ -18,7 +18,9 @@
     <li class="list-inline-item"><a href="/photo/photoShow">Top</a></li>
     <li class="list-inline-item"><a href="/photo/photoAdd" name="id">投稿</a></li>
 @endsection
-    
+
+
+
 @section('content')
     <h3>{{ $msg }}</h3>
     @if (isset($data))
@@ -38,11 +40,6 @@
             </div> 
         @endforeach
     </div>
-    {{ $data->links() }}
-@endif
-
-@endsection
-
-@section('footer')
-    
+    {{ $data->appends(['data' => $data, 'input' => $input, 'msg' => $msg])->links() }}
+    @endif
 @endsection

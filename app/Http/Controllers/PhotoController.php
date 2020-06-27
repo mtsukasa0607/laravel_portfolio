@@ -31,7 +31,6 @@ class PhotoController extends Controller
         $records = Photo::orderBy('created_at', 'desc')->paginate(9);
         $data = [
             'data' => $records,
-            'input' => 'キーワードを入力',
             'user' => $user,
         ];
         return view('photo.photoShow', $data);
@@ -147,9 +146,9 @@ class PhotoController extends Controller
     public function photoSearch(Request $request)
     {
         $word = $request->input;
-        $record = Photo::where('title', 'like', "%{$word}%") -> orWhere('content', 'like', "%{$word}%") -> orderBy('updated_at', 'desc')->paginate(9);
-        $cnt = $record->count();
-
+        $record = Photo::where('title', 'like', "%{$word}%") -> orWhere('content', 'like', "%{$word}%") -> orderBy('updated_at', 'desc') -> paginate(9);
+        $cnt = $record->total();
+        
         if($cnt === 0)
         {
             $msg = "「" . $word . "」と一致する投稿はありません。";

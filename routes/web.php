@@ -7,7 +7,7 @@ Route::get('/photo/photoDelete', 'PhotoController@photoDelete');
 Route::post('/photo/photoDelete', 'PhotoController@photoRemove');
 Route::get('/photo/photoEdit', 'PhotoController@photoEdit');
 Route::post('/photo/photoEdit', 'PhotoController@photoUpdate');
-Route::post('/photo/photoFind', 'PhotoController@photoSearch');
+Route::get('/photo/photoFind', 'PhotoController@photoSearch');
 Route::get('/photo/logout', 'PhotoController@logout');
 
 Route::get('/photo/photoShow', 'PhotoController@photoShow');

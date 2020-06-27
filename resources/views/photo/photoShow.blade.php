@@ -3,16 +3,15 @@
 @section('title', 'photo/photoShow')
 
 @section('header')
-    <form action="/photo/photoFind" method="post">
+    <form action="/photo/photoFind" method="get">
         <table>
             @csrf
             <tr>
-                <td><input type="text" name="input" value="{{$input}}" required></td>
+                <td><input type="text" name="input" placeholder="キーワードを入力" required></td>
                 <td><input type="submit" value="検索"></td>
             </tr>
         </table>
     </form>
-
 @endsection
     
 
