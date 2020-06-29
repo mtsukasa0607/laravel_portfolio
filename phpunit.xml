@@ -21,11 +21,21 @@
         <server name="APP_ENV" value="testing"/>
         <server name="BCRYPT_ROUNDS" value="4"/>
         <server name="CACHE_DRIVER" value="array"/>
-        <server name="DB_CONNECTION" value="sqlite"/>
-        <server name="DB_DATABASE" value=":memory:"/>
+        <!-- <server name="DB_CONNECTION" value="sqlite"/>
+        <server name="DB_DATABASE" value=":memory:"/> -->
+        <server name="DB_CONNECTION" value="test"/>
+        <!-- <server name="DB_DATABASE" value="laraveldb"/> -->
         <server name="MAIL_MAILER" value="array"/>
         <server name="QUEUE_CONNECTION" value="sync"/>
         <server name="SESSION_DRIVER" value="array"/>
         <server name="TELESCOPE_ENABLED" value="false"/>
+
+        <!--         
+        <server name="DB_CONNECTION" value="mysql"/>
+        <var name="DB_DSN" value="mysql:dbname=laraveldb;host=127.0.0.1" />
+        <var name="DB_USER" value="root" />
+        <var name="DB_PASSWD" value="dfsgF5_20&95" />
+        <var name="DB_DBNAME" value="laraveldb" /> -->
+
     </php>
 </phpunit>
