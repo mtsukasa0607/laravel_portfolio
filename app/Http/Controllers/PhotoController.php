@@ -26,12 +26,9 @@ class PhotoController extends Controller
 
     public function photoShow()
     {
-        $user = Auth::user();
-
-        $records = Photo::orderBy('created_at', 'desc')->paginate(9);
+        $photos = Photo::orderBy('created_at', 'desc')->paginate(9);
         $data = [
-            'data' => $records,
-            'user' => $user,
+            'data' => $photos,
         ];
         return view('photo.photoShow', $data);
     }
