@@ -30,12 +30,5 @@
         <server name="SESSION_DRIVER" value="array"/>
         <server name="TELESCOPE_ENABLED" value="false"/>
 
-        <!--         
-        <server name="DB_CONNECTION" value="mysql"/>
-        <var name="DB_DSN" value="mysql:dbname=laraveldb;host=127.0.0.1" />
-        <var name="DB_USER" value="root" />
-        <var name="DB_PASSWD" value="dfsgF5_20&95" />
-        <var name="DB_DBNAME" value="laraveldb" /> -->
-
     </php>
 </phpunit>

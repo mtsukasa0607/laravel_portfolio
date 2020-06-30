@@ -57,7 +57,7 @@
 
             <div class="fixed-bottom bg-dark text-white">
                 @yield('footer')
-                <p class="mx-5 my-2">&copy; Copyright 2020 Spa & Sauna All Rights Reserved.</p>
+                <p class="mx-5 my-2">&copy; Copyright 2020 All Rights Reserved.</p>
             </div>
         </div>
     </body>
