@@ -16,6 +16,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         Photo::class => PhotoPolicy::class,
+        Comment::class => CommentPolicy::class,
     ];
 
     /**
@@ -26,7 +27,5 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
-        //
     }
 }

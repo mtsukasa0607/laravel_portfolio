@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Photo;
+use App\Comment;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class PhotoPolicy
+class CommentPolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class PhotoPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Photo  $photo
+     * @param  \App\Comment  $comment
      * @return mixed
      */
-    public function view(User $user, Photo $photo)
+    public function view(User $user, Comment $comment)
     {
         //
     }
@@ -41,31 +41,34 @@ class PhotoPolicy
      */
     public function create(User $user)
     {
+        
+    }
+
+    /**
+     * Determine whether the user can update the model.
+     *
+     * @param  \App\User  $user
+     * @param  \App\Comment  $comment
+     * @return mixed
+     */
+    public function update(User $user, Comment $comment)
+    {
         //
     }
 
-    
-
-    public function update(User $user, Photo $photo)
+    public function commentDelete(User $user, Comment $comment)
     {
-        return $user->id === $photo->user_id;
+        return $user->id === $comment->user_id;
     }
 
-    public function delete(User $user, Photo $photo)
-    {
-        return $user->id === $photo->user_id;
-    }
-
-
-    
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Photo  $photo
+     * @param  \App\Comment  $comment
      * @return mixed
      */
-    public function restore(User $user, Photo $photo)
+    public function restore(User $user, Comment $comment)
     {
         //
     }
@@ -74,10 +77,10 @@ class PhotoPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Photo  $photo
+     * @param  \App\Comment  $comment
      * @return mixed
      */
-    public function forceDelete(User $user, Photo $photo)
+    public function forceDelete(User $user, Comment $comment)
     {
         //
     }

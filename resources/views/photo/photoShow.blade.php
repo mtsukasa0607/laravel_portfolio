@@ -30,7 +30,7 @@
             @foreach($data as $photo)
                 <div class="mx-auto col-lg-4 col-md-5 col-sm-5 col-12" >
                     <div class="card mx-auto my-3">
-                        <a href="/photo/photoDetail?id={{ $photo->id }}">
+                        <a href="/photo/photoDetail?photo_id={{ $photo->id }}">
                             <img class="image-top-show" src="{{ $photo->url }}" alt="{{ $photo->file_name }}">
                         </a>
                         <div class="card-body">

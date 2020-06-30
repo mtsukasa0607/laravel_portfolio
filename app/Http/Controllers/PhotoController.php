@@ -59,24 +59,14 @@ class PhotoController extends Controller
 
     public function photoDetail(Request $request)
     {
-        $session_photo_id = $request['id'];
+        $session_photo_id = $request['photo_id'];
         $request->session()->put('session_photo_id', $session_photo_id);
 
-        $id = $request['id'];
-        $record = Photo::find($id);
-
-        $user = Auth::user();
-        if ($user) {
-            $login_id = $user->id;
-        } else {
-            $login_id = 'no login';
-        }
-
-        $comments = Comment::where('photo_id', $id) -> orderBy('created_at', 'desc') -> get();
+        $photo = Photo::find($session_photo_id);
+        $comments = Comment::where('photo_id', $session_photo_id)->orderBy('created_at', 'desc')->get();
 
         $data = [
-            'record' => $record,
-            'login_id' => $login_id,
+            'photo' => $photo,
             'comments' => $comments,
         ];
 
@@ -166,22 +156,25 @@ class PhotoController extends Controller
     {
         $comment = new Comment;
         $comment->photo_id = $request->photo_id;
-
         $user = Auth::user();
-        if ($user) {
-            $user_id = $user->id;
-        }
-        $comment->user_id = $user_id;
+        $comment->user_id = $user->id;;
         $comment->comment = $request->comment;
         $comment->save();
-        
-        return redirect()->action('PhotoController@photoDetail', ['id' => $request->photo_id]);
+        $data = [
+            'photo_id' => $request->photo_id,
+        ];
+        return redirect()->action('PhotoController@photoDetail', $data);
     }
 
     public function photoCommentRemove(Request $request)
     {
-        Comment::find($request->id)->delete();
-        return redirect()->action('PhotoController@photoDetail', ['id' => $request->photo_id]);
+        $comment = Comment::find($request->comment_id);
+        $this->authorize('commentDelete', $comment);
+        $comment->delete();
+        $data = [
+            'photo_id' => $request->photo_id,
+        ];
+        return redirect()->action('PhotoController@photoDetail', $data);
     }
 
     public function logout(Request $request)
