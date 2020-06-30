@@ -1,6 +1,5 @@
 <html>
     <head>
-
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -30,7 +29,6 @@
     <body>
         <div class="container-fruid">
             <div class="bg-dark text-white px-5 py-2 clearfix">
-                
                 <nav class="navbar">
                     <h1><i class="fas fa-temperature-high"></i><a class="text-decoration-none text-white" href="/photo/photoShow"> Spa & Sauna</a></h1>
                     @yield('header')
@@ -49,7 +47,6 @@
                         </ul>
                     </nav>
                 </div>
-                
             </div>
 
             <div class="container-fruid px-5 mx-auto mt-5">
@@ -60,9 +57,8 @@
 
             <div class="fixed-bottom bg-dark text-white">
                 @yield('footer')
-                <p class="mx-5 my-2">&copy; Copyright 2020 All Rights Reserved.</p>
+                <p class="mx-5 my-2">&copy; Copyright 2020 Spa & Sauna All Rights Reserved.</p>
             </div>
-
         </div>
     </body>
 </html>
