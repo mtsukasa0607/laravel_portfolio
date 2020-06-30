@@ -34,7 +34,7 @@
             <div class="form-group">
                 <p>画像選択</p>
                 <input type="file" name="file">
-                <small class="form-text text-muted">ファイルサイズ10MBまで</small>
+                <small class="form-text text-muted">ファイルサイズ上限10MB / 拡張子 ( jpg/jpeg/png/gif )</small>
             </div>
 
             @if ($errors -> has('file'))
