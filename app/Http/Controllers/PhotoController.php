@@ -125,11 +125,6 @@ class PhotoController extends Controller
         return redirect()->action('PhotoController@photoShow');
     }
 
-    public function photoFind(Request $request)
-    {
-        return view('photo.photoFind', ['input' => '']);
-    }
-
     public function photoSearch(Request $request)
     {
         $word = $request->input;
