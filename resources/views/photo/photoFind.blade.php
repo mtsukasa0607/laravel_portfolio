@@ -1,6 +1,7 @@
 @extends('layouts.auth')
-
 @section('title', 'photo/photoFind')
+
+
 
 @section('header')
     <form action="/photo/photoFind" method="get">
@@ -22,23 +23,23 @@
 
 @section('content')
     <h3>{{ $msg }}</h3>
-    @if (isset($data))
+    @if (isset($photos))
     <div class="row">
-        @foreach($data as $record)
-            <div class="mx-auto col-lg-4 col-md-5 col-sm-5 col-12" >
+        @foreach($photos as $photo)
+            <div class="mx-auto col-lg-4 col-md-5 col-sm-5 col-12">
                 <div class="card mx-auto my-3">
-                    <a href="/photo/photoDetail?photo_id={{ $record->id }}">
-                        <img class="image-top-show" src="{{$record -> url}}" alt="{{$record -> file_name}}">
+                    <a href="/photo/photoDetail?photo_id={{ $photo->id }}">
+                        <img class="image-top-show" src="{{ $photo->url }}" alt="{{ $photo->file_name }}">
                     </a>
                     <div class="card-body">
-                        <h4 class="card-title">{{$record -> title}}</h4>
-                        <p>投稿者: {{$record -> user -> getName()}} さん</p>
-                        <p>投稿日時：{{$record -> created_at}}</p>
+                        <h4 class="card-title">{{ $photo->title }}</h4>
+                        <p>投稿者: {{ $photo->user->getName() }} さん</p>
+                        <p>投稿日時：{{ $photo->created_at }}</p>
                     </div>
                 </div>
             </div> 
         @endforeach
     </div>
-    {{ $data->appends(['data' => $data, 'input' => $input, 'msg' => $msg])->links() }}
+    {{ $photos->appends(['input' => $input, 'msg' => $msg])->links() }}
     @endif
 @endsection

@@ -128,8 +128,8 @@ class PhotoController extends Controller
     public function photoSearch(Request $request)
     {
         $word = $request->input;
-        $record = Photo::where('title', 'like', "%{$word}%") -> orWhere('content', 'like', "%{$word}%") -> orderBy('updated_at', 'desc') -> paginate(9);
-        $cnt = $record->total();
+        $photos = Photo::where('title', 'like', "%{$word}%") -> orWhere('content', 'like', "%{$word}%") -> orderBy('updated_at', 'desc') -> paginate(9);
+        $cnt = $photos->total();
         
         if($cnt === 0)
         {
@@ -138,13 +138,13 @@ class PhotoController extends Controller
             $msg = $cnt . "件ヒットしました。";
         }
 
-        $param = [
+        $data = [
             'input' => $request->input,
-            'data' => $record,
+            'photos' => $photos,
             'msg' => $msg,
         ];
 
-        return view('photo.photoFind', $param);
+        return view('photo.photoFind', $data);
     }
 
     public function photoComment(CommentValidateRequest $request)
