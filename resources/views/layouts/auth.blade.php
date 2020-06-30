@@ -38,8 +38,8 @@
                 <div class=" float-right">
                     <nav class="navbar">
                         <ul class="list-inline">
+                            <li class="list-inline-item"><a href="/photo/photoShow">Top</a></li>
                             @yield('nav')
-                        
                             @if(Auth::check())
                                     <li class="list-inline-item"><a href="/photo/logout">Logout</a></li>
                                 @else

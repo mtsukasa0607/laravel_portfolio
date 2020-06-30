@@ -1,16 +1,9 @@
 @extends('layouts.auth')
-
-
-
 @section('title', 'photo/photoDelete')
 
 
-
-@section('header')
-    @section('nav')
-        <li class="list-inline-item"><a href="/photo/photoShow">Top</a></li>
-        <li class="list-inline-item"><a href="/photo/photoAdd">投稿</a></li>
-    @endsection
+@section('nav')
+    <li class="list-inline-item"><a href="/photo/photoAdd">投稿</a></li>
 @endsection
 
 

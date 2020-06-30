@@ -1,17 +1,8 @@
 @extends('layouts.auth')
-
 @section('title', 'photo/photoAdd')
 
-@section('header')
-    
-@endsection
-
-@section('nav')
-    <li class="list-inline-item"><a href="/photo/photoShow">Top</a></li>
-@endsection
 
 
-    
 @section('content')
 
     <div class="mx-auto col-lg-4 col-md-5 col-sm-5 col-12">
@@ -52,12 +43,5 @@
             
             <br><input type="submit" class="form-control btn btn-dark">
         </form>
-
     </div>
-    
-
-@endsection
-
-@section('footer')
-    
 @endsection
