@@ -4,21 +4,9 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
     public function run()
     {
-        // $this->call(UserSeeder::class);
-
-        // 検証コード
-
-        // $this->call(ItemsTableSeeder::class);
-        // $this->call(ImagesTableSeeder::class);
-        // $this->call(PeopleTableSeeder::class);
-        $this->call(TestDataSeeder::class);
-
+        $this->call(CustomersTableSeeder::class);
+        $this->call(ReportsTableSeeder::class);
     }
 }
