@@ -69,6 +69,13 @@ class ReportTest extends TestCase
         $response->assertStatus(200);
     }
 
+    public function test_api_customers_get_json()
+    {
+        $response = $this->get('api/customers');
+        $this->assertThat($response->content(), $this->isJson());
+    }
+
+
 
 
 }

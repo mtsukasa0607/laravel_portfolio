@@ -14,6 +14,6 @@ class TestDataSeeder extends Seeder
                     ->each(function ($report) use ($customer) {
                         $customer->reports()->save($report);
                     });
-        });
+            });
     }
 }

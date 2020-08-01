@@ -8,7 +8,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 // For Test Code
-Route::get('customers', function(){});
+Route::get('customers', function(){
+    return response()->json();
+});
 Route::post('customers', function(){});
 Route::get('customers/{customer_id}', function(){});
 Route::put('customers/{customer_id}', function(){});
