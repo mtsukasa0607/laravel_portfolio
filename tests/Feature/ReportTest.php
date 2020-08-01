@@ -75,6 +75,14 @@ class ReportTest extends TestCase
         $this->assertThat($response->content(), $this->isJson());
     }
 
+    public function test_api_customers_get_json_format()
+    {
+        $response = $this->get('api/customers');
+        $customers = $response->json();
+        $customer = $customers[0];
+        $this->assertSame(['id', 'name'], array_keys($customer));
+    }
+
 
 
 
