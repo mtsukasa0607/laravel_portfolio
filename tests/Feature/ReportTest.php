@@ -17,7 +17,10 @@ class ReportTest extends TestCase
 
     public function test_api_customers_post()
     {
-        $response = $this->post('api/customers');
+        $customer = [
+            'name' => 'customer_name',
+        ];
+        $response = $this->postJson('api/customers', $customer);
         $response->assertStatus(200);
     }
 
@@ -83,12 +86,20 @@ class ReportTest extends TestCase
         $this->assertSame(['id', 'name'], array_keys($customer));
     }
 
-    public function test_api_customers_get_json_10_return()
-    {
-        $response = $this->get('api/customers');
-        $response->assertJsonCount(10);
-    }
+    // public function test_api_customers_get_json_10_return()
+    // {
+    //     $response = $this->get('api/customers');
+    //     $response->assertJsonCount(10);
+    // }
 
+    public function test_api_customers_post_add_user()
+    {
+        $params = [
+            'name' => '顧客名',
+        ];
+        $this->postJson('api/customers', $params);
+        $this->assertDatabaseHas('customers', $params);
+    }
 
 
 
