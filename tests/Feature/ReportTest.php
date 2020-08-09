@@ -101,6 +101,20 @@ class ReportTest extends TestCase
         $this->assertDatabaseHas('customers', $params);
     }
 
+    public function test_api_customers_post_null_name_422()
+    {
+        $params = [];
+        $response = $this->postJson('api/customers', $params);
+        $response->assertStatus(\Illuminate\Http\Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
 
+    public function test_api_customers_post_empty_name_422()
+    {
+        $params = [
+            'name' => ''
+        ];
+        $response = $this->postJson('api/customers', $params);
+        $response->assertStatus(\Illuminate\Http\Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
 
 }
