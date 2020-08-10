@@ -111,10 +111,27 @@ class ReportTest extends TestCase
     public function test_api_customers_post_empty_name_422()
     {
         $params = [
-            'name' => ''
+            'name' => '',
         ];
         $response = $this->postJson('api/customers', $params);
         $response->assertStatus(\Illuminate\Http\Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
+
+    public function test_api_customers_post_check_error_response()
+    {
+        $params = [
+            'name' => '',
+        ];
+        $response = $this->postJson('api/customers', $params);
+        $error_response = [
+            'message' => 'The given data was invalid.',
+            'errors' => [
+                'name' => [
+                    'name は必須項目です。'
+                ],
+            ],
+        ];
+        $response->assertExactJson($error_response);
     }
 
 }
